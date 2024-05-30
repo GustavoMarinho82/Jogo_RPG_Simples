@@ -1,4 +1,5 @@
-# ARQUIVO DE VARIÁVEIS
+from io import open
+
 
 # jogador = {"Local": [linha_do_castelo, coluna_do_castelo], ...}
 jogador = {"Local": [0, 0], "Vida": 100}
@@ -36,4 +37,5 @@ interacoes_indisponiveis = []
 
 #inimigos = []
 
-#texto_de_inicio = ""
+arq = open("diversos/Texto_Inicial.txt", mode="r", encoding="utf-8")
+texto_de_inicio = arq.read()

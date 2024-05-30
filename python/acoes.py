@@ -1,5 +1,3 @@
-# ARQUIVO DE AÇÕES
-
 import python.variaveis as var
 import python.funcoes as funcao
 
@@ -69,7 +67,7 @@ def ver_mapa():
 
 def observar_sala():
     x, y = var.jogador["Local"]
-    nome_sala = funcao.obter_nome_sala((x, y))
+    nome_sala = var.castelo[x][y]
     desbloqueadas = [] #desbloqueadas -> interações desbloqueadas nessa observação
 
     funcao.print_lento(var.textos_observacao[x][y])
@@ -93,10 +91,16 @@ def observar_sala():
 
 
 
-#def realizar_acao(nome_acao):
+
 
 #def abrir_inventário():
 
 #def usar_item():
 
 #def atacar():
+
+def realizar_acao(acao):
+    match acao:
+        case "Rezar":
+            print("Você rezou")
+            funcao.enter_para_continuar()

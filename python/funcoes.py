@@ -1,24 +1,34 @@
-# ARQUIVO DE FUNÇÕES
-
 from sys import stdout
 from os import system
 from time import sleep
 import python.variaveis as var
 
-VELOCIDADE_TEXTO = 0.05
 
 def print_lento(texto):
     for letra in texto:
         print(letra, end="")
         stdout.flush()
-        sleep(VELOCIDADE_TEXTO)
+        sleep(0.05)
 
     print("")
 
 
+def iniciar_jogo():
+    print("Você deseja ver o texto de início? (Sim/Não)")
+
+    match input().casefold():
+        case "sim" | "s":
+            system("cls")
+            print_lento(var.texto_de_inicio)
+            sleep(1)
+            input("(Pressione 'Enter' para iniciar a sua aventura)")
+    
+    system("cls")
+
+
 def enter_para_continuar():
     sleep(1)
-    input("(Pressione 'Enter' para continuar)\n")
+    input("(Pressione 'Enter' para continuar)")
     system("cls")
 
 
@@ -27,13 +37,6 @@ def obter_coordenadas(sala):
         if sala in var.castelo[x]:
             y = var.castelo[x].index(sala)
             return (x, y)
-
-
-def obter_nome_sala(coordenadas):
-    x, y = coordenadas
-    nome_sala = var.castelo[x][y]
-
-    return nome_sala
 
 
 def descobrir_sala(coordenadas):
@@ -45,12 +48,20 @@ def desbloquear_interacao(interacao):
     var.interacoes_desbloqueadas.append(interacao)
 
 
-def obter_outras_acoes():
-    nome_sala = obter_nome_sala(var.jogador["Local"])
-    acoes_possiveis = []
+# Printa as outras ações possíveis e retorna um trecho de código para o exec() no match de escolher uma ação
+def outras_acoes():
+    x, y = var.jogador["Local"]
+    nome_sala = var.castelo[x][y]
+    
+    case_outras_acoes = "match numero_acao: \n\t" 
+    numero_acao = 5
 
     for interacao in var.interacoes[nome_sala]:
         if (interacao in var.interacoes_desbloqueadas):
-            acoes_possiveis.append(interacao)
+            print(f" ({numero_acao}): {interacao}")
+            case_outras_acoes += f"case '{numero_acao}': acao.realizar_acao('{interacao}') \n\t"
+            numero_acao += 1
 
-    return acoes_possiveis
+    case_outras_acoes += "case _: \n\t\tprint('Ação inválida') \n\t\tfuncao.enter_para_continuar()"
+    
+    return case_outras_acoes
