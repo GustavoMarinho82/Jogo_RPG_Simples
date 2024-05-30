@@ -1,8 +1,19 @@
 # ARQUIVO DE FUNÇÕES
 
+from sys import stdout
 from os import system
 from time import sleep
 import python.variaveis as var
+
+VELOCIDADE_TEXTO = 0.05
+
+def print_lento(texto):
+    for letra in texto:
+        print(letra, end="")
+        stdout.flush()
+        sleep(VELOCIDADE_TEXTO)
+
+    print("")
 
 
 def enter_para_continuar():
@@ -30,18 +41,16 @@ def descobrir_sala(coordenadas):
     var.salas_descobertas[x][y] = True
 
 
-def desbloquear_interacao(interacao, sala_interacao):
+def desbloquear_interacao(interacao):
     var.interacoes_desbloqueadas.append(interacao)
-
-    print("Nova interação desbloqueada em {}: {}".format(sala_interacao, interacao))
 
 
 def obter_outras_acoes():
-    nome_sala = obter_nome_sala(var.jogador[0])
+    nome_sala = obter_nome_sala(var.jogador["Local"])
     acoes_possiveis = []
 
     for interacao in var.interacoes[nome_sala]:
         if (interacao in var.interacoes_desbloqueadas):
             acoes_possiveis.append(interacao)
-    
+
     return acoes_possiveis

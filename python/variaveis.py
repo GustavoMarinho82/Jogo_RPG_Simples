@@ -1,7 +1,7 @@
 # ARQUIVO DE VARIÁVEIS
 
-# jogador = [localização, vida]
-jogador = [[0, 0], 100]
+# jogador = {"Local": [linha_do_castelo, coluna_do_castelo], ...}
+jogador = {"Local": [0, 0], "Vida": 100}
 
 
 # itens = {ID}

@@ -13,10 +13,10 @@ while (True):
     print(" (3): Abrir inventário")
     print(" (4): Observar a sala atual")
 
-    outras_acoes = funcao.obter_outras_acoes()
+    '''outras_acoes = funcao.obter_outras_acoes()
 
     for i in range(len(outras_acoes)):
-            print(f" ({i+5}): {outras_acoes[i]}") 
+            print(f" ({i+5}): {outras_acoes[i]}") '''
 
     numero_acao = input("Realize uma digitando seu respectivo número: ")
 
