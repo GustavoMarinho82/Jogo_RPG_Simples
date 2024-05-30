@@ -1,6 +1,3 @@
-from os import system
-#from time import sleep
-#import python.variaveis as var
 import python.funcoes as funcao
 import python.acoes as acao
 
@@ -19,7 +16,7 @@ def main():
         
         numero_acao = input("Realize uma digitando seu respectivo número: ")
 
-        system("cls")
+        funcao.limpar_terminal()
 
         match numero_acao:
             case "1": acao.ver_mapa()

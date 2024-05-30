@@ -1,9 +1,15 @@
+from os import system, name as sysname
 from sys import stdout
-from os import system
 from time import sleep
 import python.variaveis as var
 
 
+def limpar_terminal():
+    match sysname:
+        case "nt": system("cls")
+        case _: system("clear")
+
+        
 def print_lento(texto):
     for letra in texto:
         print(letra, end="")
@@ -18,18 +24,18 @@ def iniciar_jogo():
 
     match input().casefold():
         case "sim" | "s":
-            system("cls")
+            limpar_terminal()
             print_lento(var.texto_de_inicio)
             sleep(1)
             input("(Pressione 'Enter' para iniciar a sua aventura)")
     
-    system("cls")
+    limpar_terminal()
 
 
 def enter_para_continuar():
     sleep(1)
     input("(Pressione 'Enter' para continuar)")
-    system("cls")
+    limpar_terminal()
 
 
 def obter_coordenadas(sala):
