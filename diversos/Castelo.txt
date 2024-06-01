@@ -11,7 +11,7 @@
 +-------------------------------------------------------------------------------+
 
 # Anotações
-Inicio -> sem ação
+Inicio -> ---
 
 Pátio -> Esqueleto com armadura de couro, ao tentar pegar a armadura o esqueleto revive e ataca
 
@@ -35,7 +35,7 @@ Guarita -> Encontra armadura de cavaleiro padrão
 
 Tribunal -> enigma
 
-Armazém -> ratos e pedinte
+Armazém -> ratos e pedinte, fonte para encher poção de vida e mana
 
 Cozinha Real -> recuperação de vida
 
@@ -71,9 +71,10 @@ Sala do Tesouro -> FIM DO JOGO
 
 
 Enigmas 
-	Jardim -> 1. O PODER DO VÔO E O REGISTRADOR DO CONHECIMENTO (Resposta: pena)
-		->2. OS POBRES ME TEM, OS RICOS PRECISAM (Resposta: nada)
-		->3. (Resposta: peixe)
+	Jardim -> 1. A ESPADA PODE MARCAR OS VIVOS COM FERIMENTOS, ENQUANTO ELA PODE MARCAR O PAPEL COM CONHECIMENTO
+(Resposta: pena)
+		-> 2. ABENÇOADA PELA SUA BELEZA, ARRANCADA DE SEU PRÓPRIO LUGAR POR ELA. OU MELHOR, MALDIÇOADA PELA SUA BENÇÃO (Resposta: flor)
+		-> 3. VIVO E SALTITANTE ENQUANTO MOLHADO, MORTO E COZIDO ENQUANTO SECO (Resposta: peixe)
 
 	Tribunal -> Selecionar o assasino, a arma, o local do corpo/assassinato e o motivo do assasinato 
 		(Arma -> escondida na armaria | Assassino -> comandante dos guardas 
@@ -82,4 +83,8 @@ Enigmas
 	O soldado estava tendo um caso com uma empregada do castelo, só que a empregada era filha do comandante. O general chamou o soldado para QG, dizendo que iria promove-lo pela sua competencia, com isso o soldado revelou que estava tendo um caso com a filha. Então o general o matou por raiva e sumiu do castelo e nunca mais foi visto.
 	Contexto: o general era violento, mas tentava controlar sua raiva quando estava fora do serviço por causa da sua filha. Ele fugiu por não conseguir falar pra própria filha que matou o soldado e para protege-la dele
 
-	Sala Tesour? ->
+	Sala Tesour? -> (Puzzle legal do Skyrim)
+O primeiro teme a todos, enquanto o segundo não teme ninguém.
+O terceiro come o que ele pode, tendo preferência pelo primeiro.
+O quarto teme o segundo, mas só quando está sozinho.
+(Resposta: 1°- Cobra | 2°- Urso | 3°- Raposa | 4°- Lobo)

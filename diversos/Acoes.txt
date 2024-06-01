@@ -1,0 +1,53 @@
+Início: 
+
+Pátio: Pegar armadura de couro do esqueleto
+
+Ponte acidentada: Interagir com o pescador, Espantar passáro, Pegar pena, Dar vara de pesca pro pescador
+
+Jardim: Atacar Planta carnívora, Pegar flor, Inspecionar altares
+
+Torre de Vigia: Interagir com arqueiro, Pegar anel
+
+
+Estábulos: Atacar Arqueiro, Interagir com cuidadora, Fazer carinho no cavalo (a NPC te dá espada de ferro)
+
+Sala Aberta: Atacar Cavaleiro Misterioso
+
+Capela: Rezar, pegar sino sagrado
+
+Refeitório: Se aproximar da multidão de fantasmas, Pegar anel, Pegar túnica
+
+Guarita: Atacar Guarda
+
+
+Tribunal: Fazer julgamento
+
+Armazém: Atacar Ratos, interagir com padre, reeabastecer poções nas fontes
+
+Cozinha Real: Comer restos de comida
+
+QG: checar registros de batalhas (Descobre o porque do rei morreru), Pegar armadura
+
+Masmorra: Pegar anel, Pegar chicote, Pegar armadura
+
+
+Corredor Estreito: Vasculhar, Liberar passagem secreta
+
+Biblioteca: Checar registros sobre comandante, Checar registros sobre o mago, Checar registros sobre o rei
+
+Sala do Trono: Atacar Cavaleiro Dourado
+
+Armaria: Vasculhar, Pegar anel, Pegar clava enferrujada
+
+Torre do Mago: Interagir com o Velho, Atacar o Mago, Furtar os itens do mago
+
+
+Sala do Tesouro Falsa: Resolver enigma
+
+Aposentos: Atacar Cavalheiro Negro, Vasculhar, Pegar vara de pesca
+
+Guardas Reais: Atacar Guardas
+
+Quarto do rei: Vasculhar
+
+Sala do Tesouro:
