@@ -5,16 +5,32 @@ from io import open
 jogador = {"Local": [0, 0], "Vida": 100}
 
 
-# itens = {ID}
-itens = {0: ()}
+# itens = {ID: {"Nome": x, "Descrição": y}, ...}  |  Tipos de itens: 0~1-> poções | 2~10-> diversos | 11~17-> anéis | 21~29-> armas | 31~37-> armaduras
+itens = {}
 
+arq = open('diversos/itens.txt', 'r', encoding='utf-8')
+linhas = arq.readlines()
 
-# inventário = {"ID do Item": Quantidade, ...}
-inventário = {0: 3}
+for linha in linhas:
+    linha = linha.strip()
+
+    if (linha != ""):
+        id, nome, descricao = linha.split(" - ")
+        itens[int(id)] = {"Nome": nome, "Descrição": descricao}
+
+arq.close()
+
+""" Função para checar a variável itens 
+for a, b in itens.items():
+    print(a, b)
+"""
+
+# inventario = {"ID do Item": Quantidade, ...}
+inventario = {0: 3, 1: 3, 11: 1, 21: 1, 31: 1}
 
 
 # equipamento -> [0: Arma, 1: Armadura, 2: Anel] (itens equipados pelo jogador)
-equipamentos = [0, 0 ,0]
+equipamentos = [20, 30, 11]
 
 
 # catelo -> [linha de salas][sala] | [0][0] -> "Início"
@@ -39,3 +55,4 @@ interacoes_indisponiveis = []
 
 arq = open("diversos/Texto_Inicial.txt", mode="r", encoding="utf-8")
 texto_de_inicio = arq.read()
+arq.close()

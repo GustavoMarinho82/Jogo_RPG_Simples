@@ -1,0 +1,42 @@
+Onde/como obter cada item
+
+0: Pode ser reabastecido no Armazém (Máximo 3)
+1: Pode ser reabastecido no Armazém (Máximo 3)
+
+2: Jardim
+3: Ponte Acidentada
+4: Ponte Acidentada (após dar a vara pro pescador)
+5: Estábulos (drop de batalha)
+6: Padre no Armazém
+7: Recompensa do Engima do Jardim
+8: Aposentos
+9: Recompensa do Engima do Tribunal
+10: Recompensa do Engima da SdT Falsa
+
+11: Anel Inicial
+12: Refeitório
+13: Sala Aberta (drop de batalha)
+14: Masmorra
+15: Armaria
+16: Torre de Vigia
+17: Torre do Mago
+
+21: Arma Inicial
+22: Estábulos
+23: Masmorra
+24: Armaria
+25: Guarita (drop de batalha)
+26: Aposentos (drop de batalha)
+
+27: Catedral
+28: Biblioteca (drop de batalha)
+29: Torre do Mago
+
+31: Armadura Inicial
+32: Esqueleto em Pátio (drop de batalha)
+33: Masmorra
+34: QG
+35: Sala do Trono (drop de batalha)
+
+36: Refeitório
+37: Torre do Mago
