@@ -1,4 +1,15 @@
-Início: Você encara o enorme castelo diante de seus olhos. Há diversas rachaduras, musgos e outros sinais do tempo em suas paredes externas. Além disso, você não escuta absolutamente nenhum som vindo de dentro dele, parece que o castelo foi abandonado em algum momento depois de ter desaparecido.
+Início: Você encara o enorme castelo diante de seus olhos. Há diversas rachaduras, musgos e outros sinais do tempo em suas paredes externas. Além disso, você não escuta absolutamente nenhum som vindo de dentro dele, parece que o castelo foi abandonado em algum momento após o seu desaparecimento.
+
+
+Pátio: Você observa o pátio e nota a presença de vários pilares e arcos arquitetônicos indicando dois caminhos, um para uma ponte e outro para o interior do castelo. Durante sua volta pelo pátio, você também nota um esqueleto escondido atrás de um pilar.
+
+
+Ponte Acidentada: Você nota uma ponte fragmentada em duas, suas madeiras parecem ter apodrecido e é impossível passar para o outro lado originalmente conectado pela ponte. Você vê, no outro lado da ponte, um jardim e logo depois uma enorme torre de vigia.
+
+
+Jardim: Você fica deslumbrado pelas flores belas e exóticas do jardim, sua visão seria ainda mais prazerosa se as contruções do jardim não tivessem sido dominadas pelo musgo e caindo aos pedaços. Durante a sua procura pela flor mais bonita, você encontra um três altares com escrituras e um anel sendo guardado por uma enorme planta carnívora, ela está babando enquanto te encara.
+
+
 
 
 Nomes: Nahlgese
