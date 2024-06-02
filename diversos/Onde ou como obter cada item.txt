@@ -10,8 +10,8 @@ Onde/como obter cada item
 6: Padre no Armazém
 7: Recompensa do Engima do Jardim
 8: Aposentos
-9: Recompensa do Engima do Tribunal
-10: Recompensa do Engima da SdT Falsa
+9: Recompensa do Engima da SdT Falsa
+10: Recompensa do Engima do Tribunal
 
 11: Anel Inicial
 12: Refeitório

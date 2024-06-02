@@ -1,13 +1,13 @@
 +-------------------------------------------------------------------------------+
-|Início		    |Estábulos	    |Tribunal	    |CorredorEstreit|Sala do Tesour?|
+|Início		|Estábulos	|Tribunal	|CorredorEstreit|Sala do Tesour?|
 +---------------|---------------|---------------|---------------|---------------+
-|Pátio		    |Sala Aberta	|Armazém	    |Biblioteca     |Aposentos      |
+|Pátio		|Sala Aberta	|Armazém	|Biblioteca     |Aposentos      |
 +---------------|---------------|---------------|---------------|---------------+
-|Ponte Acidentad|Capela		    |Cozinha Real	|Sala do Trono	|Guardas Reais	|
+|Ponte Acidentad|Capela		|Cozinha Real	|Sala do Trono	|Guardas Reais	|
 +---------------|---------------|---------------|---------------|---------------+
-|Jardim		    |Refeitório     |QG             |Armaria	    |Quarto do Rei	|
+|Jardim		|Refeitório     |QG             |Armaria	|Quarto do Rei	|
 +---------------|---------------|---------------|---------------|---------------+
-|Torre de Vigia	|Guarita	    |Masmorra	    |Torre do Mago	|Sala do Tesouro|
+|Torre de Vigia	|Guarita	|Masmorra	|Torre do Mago	|Sala do Tesouro|
 +-------------------------------------------------------------------------------+
 
 # Anotações
@@ -59,7 +59,7 @@ Sala do Tesouro Falsa -> enigma
 
 Aposentos -> tem a vara de pesca
 
-Guardas Reais -> batalha
+Guardas Reais -> batalha (antes da batalha os guardas precisam ser despetrificados com a àgua sagrada)
 
 Quarto do rei -> precisa da chave
 

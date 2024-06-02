@@ -1,32 +1,32 @@
-Início: 
+Início:
 
 Pátio: Pegar armadura de couro do esqueleto
 
-Ponte acidentada: Interagir com o pescador, Espantar passáro, Pegar pena, Dar vara de pesca pro pescador
+Ponte Acidentada: Interagir com o Pescador, Espantar passáro, Pegar pena, Dar vara de pesca pro Pescador
 
 Jardim: Atacar Planta carnívora, Pegar flor, Inspecionar altares
 
 Torre de Vigia: Interagir com arqueiro, Pegar anel
 
 
-Estábulos: Atacar Arqueiro, Interagir com cuidadora, Fazer carinho no cavalo (a NPC te dá espada de ferro)
+Estábulos: Atacar Arqueiro, Interagir com Cuidadora, Fazer carinho no cavalo (a NPC te dá espada de ferro)
 
 Sala Aberta: Atacar Cavaleiro Misterioso
 
-Capela: Rezar, pegar sino sagrado
+Capela: Rezar, Pegar sino sagrado
 
-Refeitório: Se aproximar da multidão de fantasmas, Pegar anel, Pegar túnica
+Refeitório: Se aproximar da multidão de fantasmas, Pegar túnica
 
 Guarita: Atacar Guarda
 
 
 Tribunal: Fazer julgamento
 
-Armazém: Atacar Ratos, interagir com padre, reeabastecer poções nas fontes
+Armazém: Atacar Ratos, Interagir com Padre, Reeabastecer poções nas fontes
 
 Cozinha Real: Comer restos de comida
 
-QG: checar registros de batalhas (Descobre o porque do rei morreru), Pegar armadura
+QG: Checar registros de batalhas (Descobre o porque do rei morreu), Pegar armadura
 
 Masmorra: Pegar anel, Pegar chicote, Pegar armadura
 
@@ -39,14 +39,14 @@ Sala do Trono: Atacar Cavaleiro Dourado
 
 Armaria: Vasculhar, Pegar anel, Pegar clava enferrujada
 
-Torre do Mago: Interagir com o Velho, Atacar o Mago, Furtar os itens do mago
+Torre do Mago: Interagir com o Velho, Atacar o Mago, Furtar os itens do Mago
 
 
-Sala do Tesouro Falsa: Resolver enigma
+Sala do Tesouro?: Resolver enigma
 
 Aposentos: Atacar Cavalheiro Negro, Vasculhar, Pegar vara de pesca
 
-Guardas Reais: Atacar Guardas
+Guardas Reais: Inspecionar estátuas, Despetrificar estátuas, Atacar Guardas
 
 Quarto do rei: Vasculhar
 
