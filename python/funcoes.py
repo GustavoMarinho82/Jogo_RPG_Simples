@@ -19,6 +19,29 @@ def print_lento(texto):
     print("")
 
 
+def enter_para_continuar():
+    sleep(1)
+    input("(Pressione 'Enter' para continuar)")
+    limpar_terminal()
+
+
+def obter_coordenadas(sala):
+    for x in range(5):
+        if sala in var.castelo[x]:
+            y = var.castelo[x].index(sala)
+            return (x, y)
+
+
+def descobrir_sala(coordenadas):
+    x, y = coordenadas
+    var.salas_descobertas[x][y] = True
+
+
+def desbloquear_interacao(interacao):
+    var.interacoes_indisponiveis.pop(interacao)
+    var.interacoes_desbloqueadas.append(interacao)
+
+
 def tela_de_inicio():
     while (True):
         print(var.boas_vindas)
@@ -46,32 +69,12 @@ def tela_de_inicio():
                 limpar_terminal()
                 continue
 
-            case _: continue
+            case _: 
+                limpar_terminal()
+                continue
 
         limpar_terminal()
         break
-
-
-def enter_para_continuar():
-    sleep(1)
-    input("(Pressione 'Enter' para continuar)")
-    limpar_terminal()
-
-
-def obter_coordenadas(sala):
-    for x in range(5):
-        if sala in var.castelo[x]:
-            y = var.castelo[x].index(sala)
-            return (x, y)
-
-
-def descobrir_sala(coordenadas):
-    x, y = coordenadas
-    var.salas_descobertas[x][y] = True
-
-
-def desbloquear_interacao(interacao):
-    var.interacoes_desbloqueadas.append(interacao)
 
 
 # Printa as outras ações possíveis e retorna um trecho de código para o exec() no match de escolher uma ação
@@ -79,15 +82,19 @@ def outras_acoes():
     x, y = var.jogador["Local"]
     nome_sala = var.castelo[x][y]
     
-    case_outras_acoes = "match numero_acao: \n\t" 
-    numero_acao = 5
+    if (nome_sala in var.interacoes.keys()):
+        case_outras_acoes = "match numero_acao: \n\t" 
+        numero_acao = 5
 
-    for interacao in var.interacoes[nome_sala]:
-        if (interacao in var.interacoes_desbloqueadas):
-            print(f" ({numero_acao}): {interacao}")
-            case_outras_acoes += f"case '{numero_acao}': acao.realizar_acao('{interacao}') \n\t"
-            numero_acao += 1
+        for interacao in var.interacoes[nome_sala]:
+            if (interacao in var.interacoes_desbloqueadas):
+                print(f" ({numero_acao}): {interacao}")
+                case_outras_acoes += f"case '{numero_acao}': acao.realizar_acao('{interacao}') \n\t"
+                numero_acao += 1
 
-    case_outras_acoes += "case _: \n\t\tprint('Ação inválida') \n\t\tfuncao.enter_para_continuar()"
+        case_outras_acoes += "case _: \n\t\tprint('Ação inválida') \n\t\tfuncao.enter_para_continuar()"
+        
+        return case_outras_acoes
     
-    return case_outras_acoes
+    else:
+        return "print('Ação inválida') \nfuncao.enter_para_continuar()"

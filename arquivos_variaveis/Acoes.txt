@@ -48,6 +48,6 @@ Aposentos: Atacar Cavalheiro Negro, Vasculhar, Pegar vara de pesca
 
 Guardas Reais: Inspecionar estátuas, Despetrificar estátuas, Atacar Guardas
 
-Quarto do rei: Vasculhar
+Quarto do Rei: Vasculhar
 
 Sala do Tesouro:

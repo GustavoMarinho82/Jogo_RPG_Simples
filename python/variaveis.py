@@ -8,7 +8,7 @@ jogador = {"Local": [0, 0], "Vida": 100, "Mana": 100, "Máximo de Mana": 100}
 # itens = {id: {"Nome": x, "Descrição": y}, ...}  |  Tipos de itens: 0~1-> poções | 2~10-> diversos | 11~17-> anéis | 21~29-> armas | 31~37-> armaduras
 itens = {}
 
-arq = open('diversos/itens.txt', 'r', encoding='utf-8')
+arq = open('arquivos_variaveis/itens.txt', 'r', encoding='utf-8')
 linhas = arq.readlines()
 
 for linha in linhas:
@@ -51,7 +51,7 @@ interacoes = {}
 interacoes_desbloqueadas = []
 interacoes_indisponiveis = ["Pegar pena", "Dar vara de pesca pro Pescador", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
 
-arq = open('diversos/acoes.txt', 'r', encoding='utf-8')
+arq = open('arquivos_variaveis/acoes.txt', 'r', encoding='utf-8')
 linhas = arq.readlines()
 
 for linha in linhas:
@@ -71,11 +71,11 @@ for a, b in interacoes.items():
 
 #inimigos = []
 
-arq = open("diversos/Texto_Inicial.txt", mode="r", encoding="utf-8")
+arq = open("arquivos_variaveis/Texto_Inicial.txt", mode="r", encoding="utf-8")
 texto_de_inicio = arq.read()
 arq.close()
 
-arq = open("diversos/Boas_Vindas.txt", mode="r", encoding="utf-8")
+arq = open("arquivos_variaveis/Boas_Vindas.txt", mode="r", encoding="utf-8")
 boas_vindas = arq.read()
 arq.close()
 
