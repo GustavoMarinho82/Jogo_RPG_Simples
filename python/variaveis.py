@@ -49,7 +49,7 @@ textos_observacao[0][0] = "Você observa o início e decide rezar antes de adent
 # interacoes_desbloqueadas -> interações que podem ser realizadas | interacoes_indisponiveis -> interações que não podem ser desbloqueadas
 interacoes = {}
 interacoes_desbloqueadas = []
-interacoes_indisponiveis = ["Pegar pena", "Dar vara de pesca pro Pescador", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
+interacoes_indisponiveis = ["Pegar pena", "Dar vara de pesca pro Pescador", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
 
 arq = open('arquivos_variaveis/acoes.txt', 'r', encoding='utf-8')
 linhas = arq.readlines()

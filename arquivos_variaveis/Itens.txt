@@ -19,23 +19,23 @@
 16 - Anel do Defensor - Garante +2 de defesa
 17 - Anel do Mago - Garante +30 de mana
 
-21 - Espada de Madeira - +1 de dano
-22 - Espada Reta de Ferro - +2 de dano
-23 - Chicote com Espinhos - +3 de dano
-24 - Clava de Bronze Enferrujada - +5 de dano
-25 - Alabarda do Guarda Sem Nome - +6 de dano
-26 - Espada do Cavaleiro Negro - +8 de dano
+21 - Espada de Madeira - 1 de dano
+22 - Espada Reta de Ferro - 2 de dano
+23 - Chicote com Espinhos - 3 de dano
+24 - Clava de Bronze Enferrujada - 5 de dano
+25 - Alabarda do Guarda Sem Nome - 6 de dano
+26 - Espada do Cavaleiro Negro - 8 de dano
 
 27 - Sino Sagrado - +15 de mana
 28 - Cajado do Bibliotecário - +10 de mana e aumenta o dano de feitiços
 29 - Cajado Degastado de Lincaindir - +25 de mana e aumenta o dano de feitiços
 
-31 - Roupa de Camponês - +1 de defesa
-32 - Armadura de Couro Esfarrapada - +2 de defesa
-33 - Armadura de Malha - +3 de defesa
-34 - Armadura de Prata - +4 de defesa
-35 - Armadura do Cavaleiro Dourado - +6 de defesa
+31 - Roupa de Camponês - 1 de defesa
+32 - Armadura de Couro Esfarrapada - 2 de defesa
+33 - Armadura de Malha - 3 de defesa
+34 - Armadura de Prata - 4 de defesa
+35 - Armadura do Cavaleiro Dourado - 6 de defesa
 
-36 - Túnica de Aprendiz - +25 de mana e +1 de defesa
-37 - Túnica de Lincaindir - +45 de mana e +2 de defesa
+36 - Túnica de Aprendiz - +25 de mana e 1 de defesa
+37 - Túnica de Lincaindir - +45 de mana e 2 de defesa
 

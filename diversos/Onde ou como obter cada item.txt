@@ -34,8 +34,8 @@ Onde/como obter cada item
 
 31: Armadura Inicial
 32: Esqueleto em Pátio (drop de batalha)
-33: Masmorra
-34: QG
+33: QG
+34: Masmorra
 35: Sala do Trono (drop de batalha)
 
 36: Refeitório

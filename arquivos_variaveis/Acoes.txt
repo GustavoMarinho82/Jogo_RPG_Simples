@@ -13,14 +13,14 @@ Estábulos: Atacar Arqueiro, Interagir com Cuidadora, Fazer carinho no cavalo (a
 
 Sala Aberta: Atacar Cavaleiro Misterioso
 
-Capela: Rezar, Pegar sino sagrado
+Capela: Rezar, Pegar um sino sagrado, Pegar escrituras
 
 Refeitório: Se aproximar da multidão de fantasmas, Pegar túnica
 
-Guarita: Atacar Guarda
+Guarita: Atacar Guarda, Pegar Escritura
 
 
-Tribunal: Fazer julgamento
+Tribunal: Interagir com o Juiz, Realizar o julgamento
 
 Armazém: Atacar Ratos, Interagir com Padre, Reeabastecer poções nas fontes
 
