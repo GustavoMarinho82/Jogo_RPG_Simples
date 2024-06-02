@@ -74,3 +74,9 @@ for a, b in interacoes.items():
 arq = open("diversos/Texto_Inicial.txt", mode="r", encoding="utf-8")
 texto_de_inicio = arq.read()
 arq.close()
+
+arq = open("diversos/Boas_Vindas.txt", mode="r", encoding="utf-8")
+boas_vindas = arq.read()
+arq.close()
+
+texto_lento_ativado = True

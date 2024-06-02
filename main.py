@@ -3,13 +3,13 @@ import python.acoes as acao
 
 
 def main():
-    funcao.iniciar_jogo()
+    funcao.tela_de_inicio()
 
     while (True):
         print("Possíveis ações:")
         print(" (1): Ver o mapa")
         print(" (2): Mover-se para outra sala")
-        print(" (3): Abrir inventário")
+        print(" (3): Abrir inventário / Ver status")
         print(" (4): Observar a sala atual")
 
         case_outras_acoes = funcao.outras_acoes()

@@ -14,22 +14,42 @@ def print_lento(texto):
     for letra in texto:
         print(letra, end="")
         stdout.flush()
-        sleep(0.05)
+        sleep(0.05 if (var.texto_lento_ativado) else 0)
 
     print("")
 
 
-def iniciar_jogo():
-    print("Você deseja ver o texto de início? (Sim/Não)")
+def tela_de_inicio():
+    while (True):
+        print(var.boas_vindas)
+        print("(1): Iniciar jogo")
+        print("(2): Carregar jogo já salvo")
+        print("(3):", "Desativar" if (var.texto_lento_ativado) else "Ativar", "textos lentos")
+        
+        opcao = input("O que você deseja fazer (Digite o número correspondente): ")
 
-    match input().casefold():
-        case "sim" | "s":
-            limpar_terminal()
-            print_lento(var.texto_de_inicio)
-            sleep(1)
-            input("(Pressione 'Enter' para iniciar a sua aventura)")
-    
-    limpar_terminal()
+        match opcao:
+            case "1":
+                escolha = input("Você deseja ver o texto de início? (Sim/Não): ")
+                
+                match escolha.casefold():
+                    case "sim" | "s":
+                        limpar_terminal()
+                        print_lento(var.texto_de_inicio)
+                        sleep(1)
+                        input("(Pressione 'Enter' para iniciar a sua aventura)")
+
+            case "2": continue #Não implementado ainda
+
+            case "3": 
+                var.texto_lento_ativado = False if (var.texto_lento_ativado) else True
+                limpar_terminal()
+                continue
+
+            case _: continue
+
+        limpar_terminal()
+        break
 
 
 def enter_para_continuar():
