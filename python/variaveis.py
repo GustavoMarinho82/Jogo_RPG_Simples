@@ -2,7 +2,7 @@ from io import open
 
 
 # jogador = {"Local": [linha_do_castelo, coluna_do_castelo], ...}
-jogador = {"Local": [0, 0], "Vida": 100, "Mana": 100, "Máximo de Mana": 100}
+jogador = {"Localizacao": [0, 0], "Vida": 100, "Mana": 100, "Máximo de Mana": 100}
 
 
 # itens = {id: {"Nome": x, "Descrição": y}, ...}  |  Tipos de itens: 0~1-> poções | 2~10-> diversos | 11~17-> anéis | 21~29-> armas | 31~37-> armaduras
@@ -14,7 +14,7 @@ linhas = arq.readlines()
 for linha in linhas:
     linha = linha.strip()
 
-    if (linha != ""):
+    if (linha != "") and (len(linha.split(" - ")) == 3):
         id, nome, descricao = linha.split(" - ")
         itens[int(id)] = {"Nome": nome, "Descrição": descricao}
 
@@ -24,6 +24,7 @@ arq.close()
 for a, b in itens.items():
     print(a, b)
 """
+
 
 # inventario = {"ID do Item": Quantidade, ...}
 inventario = {0: 3, 1: 3, 11: 1, 21: 1, 31: 1}
@@ -42,14 +43,30 @@ salas_descobertas = [[False for _ in range(5)] for _ in range(5)]
 salas_descobertas[0][0] = True
 
 
-textos_observacao = [[f"Texto obs {x} {y}" for x in range(5)] for y in range(5)]
-textos_observacao[0][0] = "Você observa o início e decide rezar antes de adentrar no castelo"
+textos_observacao = {}
+
+arq = open('arquivos_variaveis/Textos_Observacao.txt', 'r', encoding='utf-8')
+linhas = arq.readlines()
+
+for linha in linhas:
+    linha = linha.strip()
+
+    if (linha != "") and (len(linha.split(": ")) == 2):
+        sala, texto_observacao = linha.split(": ")
+        textos_observacao[sala] = texto_observacao
+
+arq.close()
+
+""" Função para checar a variável textos_observacao
+for a, b in textos_observacao.items():
+    print(a, b)
+"""
 
 
 # interacoes_desbloqueadas -> interações que podem ser realizadas | interacoes_indisponiveis -> interações que não podem ser desbloqueadas
 interacoes = {}
 interacoes_desbloqueadas = []
-interacoes_indisponiveis = ["Pegar pena", "Dar vara de pesca pro Pescador", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
+interacoes_indisponiveis = ["Pegar pena", "Dar vara de pesca pro Pescador", "Atacar Arqueiro", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
 
 arq = open('arquivos_variaveis/acoes.txt', 'r', encoding='utf-8')
 linhas = arq.readlines()
@@ -68,6 +85,7 @@ arq.close()
 for a, b in interacoes.items():
     print(a, b)
 """
+
 
 #inimigos = []
 

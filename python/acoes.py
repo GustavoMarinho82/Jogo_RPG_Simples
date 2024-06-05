@@ -9,7 +9,7 @@ def movimentar():
     # pos_mov -> possíveis movimentos
     pos_mov = []
 
-    x, y = var.jogador["Local"]
+    x, y = var.jogador["Localizacao"]
 
 
     if (x != 0): pos_mov.append("Norte")
@@ -31,17 +31,17 @@ def movimentar():
                 print("Movimento inválido! Digite um dos possíveis movimentos:", ", ".join(pos_mov))
                 continue
             
-            case "norte": var.jogador["Local"][0] -= 1
+            case "norte": var.jogador["Localizacao"][0] -= 1
 
-            case "sul": var.jogador["Local"][0] += 1
+            case "sul": var.jogador["Localizacao"][0] += 1
 
-            case "leste": var.jogador["Local"][1] += 1
+            case "leste": var.jogador["Localizacao"][1] += 1
 
-            case "oeste": var.jogador["Local"][1] -= 1
+            case "oeste": var.jogador["Localizacao"][1] -= 1
 
         break
     
-    x, y = var.jogador["Local"]
+    x, y = var.jogador["Localizacao"]
 
     funcao.descobrir_sala((x, y))
     funcao.print_lento("Você foi para: "+ var.castelo[x][y])
@@ -66,25 +66,25 @@ def ver_mapa():
 
 
 def observar_sala():
-    x, y = var.jogador["Local"]
+    x, y = var.jogador["Localizacao"]
     nome_sala = var.castelo[x][y]
     desbloqueadas = [] #desbloqueadas -> interações desbloqueadas nessa observação
 
-    funcao.print_lento(var.textos_observacao[x][y])
+    funcao.print_lento(var.textos_observacao[nome_sala])
+
+    if (nome_sala in var.interacoes.keys()):
+        for interacao in var.interacoes[nome_sala]:
+            # Confere se a interação não está na lista das já desbloqueadas e nem da das indisponíveis
+            if (interacao not in (var.interacoes_desbloqueadas + var.interacoes_indisponiveis)):
+                funcao.desbloquear_interacao(interacao)
+                desbloqueadas.append(interacao)
 
 
-    for interacao in var.interacoes[nome_sala]:
-        # Confere se a interação não está na lista das já desbloqueadas e nem da das indisponíveis
-        if (interacao not in (var.interacoes_desbloqueadas + var.interacoes_indisponiveis)):
-            funcao.desbloquear_interacao(interacao)
-            desbloqueadas.append(interacao)
+        if (len(desbloqueadas) == 1):
+            funcao.print_lento("Nova interação desbloqueada: " + desbloqueadas[0])
 
-
-    if (len(desbloqueadas) == 1):
-        funcao.print_lento("Nova interação desbloqueada: " + desbloqueadas[0])
-
-    elif (desbloqueadas):
-        funcao.print_lento("Novas interações desbloqueadas: " + ", ".join(desbloqueadas))
+        elif (desbloqueadas):
+            funcao.print_lento("Novas interações desbloqueadas: " + ", ".join(desbloqueadas))
 
 
     funcao.enter_para_continuar()

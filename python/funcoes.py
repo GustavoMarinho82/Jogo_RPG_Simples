@@ -37,8 +37,12 @@ def descobrir_sala(coordenadas):
     var.salas_descobertas[x][y] = True
 
 
+def disponiblizar_interacao(interacao):
+    if (interacao in var.interacoes_indisponiveis):
+        var.interacoes_indisponiveis.remove(interacao)
+
+
 def desbloquear_interacao(interacao):
-    var.interacoes_indisponiveis.pop(interacao)
     var.interacoes_desbloqueadas.append(interacao)
 
 
@@ -79,7 +83,7 @@ def tela_de_inicio():
 
 # Printa as outras ações possíveis e retorna um trecho de código para o exec() no match de escolher uma ação
 def outras_acoes():
-    x, y = var.jogador["Local"]
+    x, y = var.jogador["Localizacao"]
     nome_sala = var.castelo[x][y]
     
     if (nome_sala in var.interacoes.keys()):
