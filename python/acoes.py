@@ -90,7 +90,32 @@ def observar_sala():
     funcao.enter_para_continuar()
 
 
-#def usar_item(id_item):
+# Usar/Equipar um item
+def usar_item(id_item):
+    match (id_item):
+        #Poção de Vida
+        case 0: 
+            var.jogador["Vida"] = min((var.jogador["Vida"] + var.itens[id_item]["Efeito"]), 100)
+            funcao.subtrair_item(var.itens[id_item]["Nome"], 1)
+
+        #Poção de Mana
+        case 1: 
+            var.jogador["Mana"] = min((var.jogador["Mana"] + var.itens[id_item]["Efeito"]), var.jogador["Max Mana"])
+            funcao.subtrair_item(var.itens[id_item]["Nome"], 1)
+
+        #Anéis
+        case _ if id_item in range(11, 18):
+            var.equipamentos["Anel"] = id_item
+
+        #Armas
+        case _ if id_item in range(21, 30):
+            var.equipamentos["Arma"] = id_item
+
+        #Armaduras
+        case _ if id_item in range(31, 38): 
+            var.equipamentos["Armadura"] = id_item
+
+    funcao.atualizar_max_mana()
 
 
 def abrir_inventario():
@@ -99,47 +124,88 @@ def abrir_inventario():
 
     # STATUS E ITENS EQUIPADOS
     _, vida, mana, max_mana = var.jogador.values()
-
-    id_arma = var.equipamentos["Arma"]
-    id_armadura = var.equipamentos["Armadura"]
-    id_anel = var.equipamentos["Anel"]
+    id_arma, id_armadura, id_anel = var.equipamentos.values()
 
     dano = var.itens[id_arma]["Efeito"] if (id_arma not in [27, 28, 29]) else 0
     defesa = var.itens[id_armadura]["Efeito"]
+    x, y = var.jogador["Localizacao"]
     arma = var.itens[id_arma]["Nome"]
     armadura = var.itens[id_armadura]["Nome"]
     anel = var.itens[id_anel]["Nome"]
+
+    match (id_anel):
+        case 15: dano += 2
+        case 16: defesa += 2
 
     texto_vida = "Vida: {:>03}/100".format(vida)
     texto_mana = "Mana: {:>03}/{:<03}".format(mana, max_mana)
     texto_dano = f"Dano: {dano}"
     texto_defesa =  f"Defesa: {defesa}"
+    texto_local = f"Local: {var.castelo[x][y]}"
     texto_arma = f"Arma: {arma}"
     texto_armadura = f"Armadura: {armadura}"
     texto_anel = f"Anel: {anel}"
 
-    print(f" {'_'*70} ")
-    print("| {:^29} | {:^36} |".format("STATUS", "ITENS EQUIPADOS"))
-    print(f"|{'='*31}|{'='*38}|")
-    print("| {:<13} | {:<13} | {:<36} |".format(texto_vida, texto_dano, texto_arma))
-    print("| {:<13} | {:<13} | {:<36} |".format(texto_mana, texto_defesa, texto_armadura))
-    print("| {:<13} | {:<13} | {:<36} |".format("", "", texto_anel))
-    print(f"|{'_'*15}|{'_'*15}|{'_'*38}|")
+    print(f" {'_'*73} ")
+    print("| {:^29} | {:^39} |".format("STATUS", "ITENS EQUIPADOS"))
+    print(f"|{'='*31}|{'='*41}|")
+    print("| {:<13} | {:<13} | {:<39} |".format(texto_vida, texto_dano, texto_arma))
+    print("| {:<13} | {:<13} | {:<39} |".format(texto_mana, texto_defesa, texto_armadura))
+    print("| {:<29} | {:<39} |".format(texto_local, texto_anel))
+    print(f"|{'_'*31}|{'_'*41}|")
 
 
     # INVENTÁRIO
-    print(f" {'_'*43} ")
-    print("| {:<02} | {:<30} |{:^5}|".format("ID", "NOME DO ITEM", "QTD"))
-    print(f"|{'='*4}|{'='*32}|{'='*5}|")
+    print(f" {'_'*44} ")
+    print("| {:<02} | {:<31} |{:^5}|".format("ID", "NOME DO ITEM", "QTD"))
+    print(f"|{'='*4}|{'='*33}|{'='*5}|")
     
     for id_item, quantidade in var.inventario.items():
-        nome = var.itens[id_item]["Nome"]
+        if (quantidade != 0):
+            nome = var.itens[id_item]["Nome"]
 
-        print("| {:>02} | {:<30} |{:^5}|".format(id_item, nome, quantidade))
+            print("| {:>02} | {:<31} |{:^5}|".format(id_item, nome, quantidade))
 
-    print(f"|{'_'*4}|{'_'*32}|{'_'*5}|")
+    print(f"|{'_'*4}|{'_'*33}|{'_'*5}|")
 
-    funcao.enter_para_continuar()
+
+    # USAR / EQUIPAR ITEM 
+    try:
+        item_selecionado = int(input("\nDeseja selecionar algum item? (Digite o ID do item / Não): "))
+        
+        funcao.limpar_terminal()
+
+        # Confere se o id selecionado está entre os id's dos itens presentes no inventário que estão em quantidade maior que 0
+        if (item_selecionado in [ids for ids, qtd in var.inventario.items() if (qtd > 0)]):
+            nome = var.itens[item_selecionado]["Nome"]
+            descricao = var.itens[item_selecionado]["Descrição"]
+            usar = True if (item_selecionado in [0,1]) else False
+                            
+            funcao.print_lento(f"Nome: {nome}")
+            funcao.print_lento(f"Descrição: {descricao}")
+
+            if (item_selecionado in ([0, 1] + list(range(11, 38)))):
+                resposta = input("Você deseja " + ("usar" if (usar) else "equipar") + " esse item? (Sim / Não): ")
+
+                if (resposta.casefold() in ["sim", "s"]):
+                    usar_item(item_selecionado)
+                    
+                    funcao.limpar_terminal()
+                    funcao.print_lento("Você "+ ("usou " if (usar) else "equipou ") + nome)
+                    funcao.enter_para_continuar()
+
+            else:
+                funcao.enter_para_continuar()
+
+        else:
+            funcao.print_lento("O ID do item não foi encontrado!")
+            funcao.enter_para_continuar()
+
+    # Esse try e except servem para não executar o trecho do código de usar/equipar item, caso seja inserido um 'não' ou qualquer outra string
+    except:
+        pass
+
+    funcao.limpar_terminal()
 
 
 #def atacar():

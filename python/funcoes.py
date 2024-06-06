@@ -82,6 +82,26 @@ def subtrair_item(item, quantidade):
             break
 
 
+def atualizar_max_mana():
+    novo_max_mana = 100   
+    id_arma, id_armadura, id_anel = var.equipamentos.values()
+
+    if (id_arma in [27, 28, 29]):
+        novo_max_mana += var.itens[id_arma]["Efeito"]
+    
+    if (id_armadura == 36):
+        novo_max_mana += 25
+
+    elif (id_armadura == 37):
+        novo_max_mana += 45
+
+    if (id_anel == 17):
+        novo_max_mana += 30
+
+    var.jogador["Mana"] = min(var.jogador["Mana"], novo_max_mana)
+    var.jogador["Max Mana"] = novo_max_mana
+
+
 def tela_de_inicio():
     while (True):
         print(var.boas_vindas)
@@ -93,7 +113,7 @@ def tela_de_inicio():
 
         match opcao:
             case "1":
-                escolha = input("Você deseja ver o texto de início? (Sim/Não): ")
+                escolha = input("Você deseja ver a introdução? (Sim / Não): ")
                 
                 match escolha.casefold():
                     case "sim" | "s":
@@ -132,9 +152,9 @@ def outras_acoes():
                 case_outras_acoes += f"case '{numero_acao}': acao.realizar_acao('{interacao}') \n\t"
                 numero_acao += 1
 
-        case_outras_acoes += "case _: \n\t\tprint('Ação inválida') \n\t\tfuncao.enter_para_continuar()"
+        case_outras_acoes += "case _: \n\t\tprint('Ação inválida!') \n\t\tfuncao.enter_para_continuar()"
         
         return case_outras_acoes
     
     else:
-        return "print('Ação inválida') \nfuncao.enter_para_continuar()"
+        return "print('Ação inválida!') \nfuncao.enter_para_continuar()"

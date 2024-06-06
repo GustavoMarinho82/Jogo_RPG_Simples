@@ -2,7 +2,7 @@ from io import open
 
 
 # jogador = {"Local": [linha_do_castelo, coluna_do_castelo], ...}
-jogador = {"Localizacao": [0, 0], "Vida": 100, "Mana": 100, "Máximo de Mana": 100}
+jogador = {"Localizacao": [0, 0], "Vida": 100, "Mana": 100, "Max Mana": 100}
 
 
 # itens = {id: {"Nome": x, "Descrição": y, "Efeito": z}, ...}  |  Tipos de itens: 0~1-> poções | 2~10-> diversos | 11~17-> anéis | 21~29-> armas | 31~37-> armaduras
@@ -29,7 +29,7 @@ for a, b in itens.items():
 # inventario = {"ID do Item": Quantidade, ...}
 inventario = {0: 3, 1: 3, 11: 1, 21: 1, 31: 1}
 
-
+"""inventario = {item: 1 for item in itens.keys()}"""
 # equipamentos -> ["Arma": id_do_item, ...] (itens equipados pelo jogador)
 equipamentos = {"Arma": 21, "Armadura": 31, "Anel": 11}
 
@@ -39,8 +39,7 @@ castelo = (["Início", "Estábulos", "Tribunal", "Corredor Estreito", "Sala do T
 
 
 # salas_descobertas -> usada para indicar quais salas já foram descobertas pelo jogador. Cada coordenada representa a sala com a mesma coordenada em castelo
-salas_descobertas = [[False for _ in range(5)] for _ in range(5)]
-salas_descobertas[0][0] = True
+salas_descobertas = [[True if ((x,y) == (0,0)) else False for x in range(5)] for y in range(5)]
 
 
 textos_observacao = {}
