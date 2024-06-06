@@ -2,9 +2,9 @@ Início:
 
 Pátio: Pegar Armadura de Couro do esqueleto
 
-Ponte Acidentada: Interagir com o Pescador, Espantar passáro, Pegar pena, Dar vara de pesca pro Pescador
+Ponte Acidentada: Interagir com o Pescador, Espantar pássaro, Pegar Pena, Dar Vara de Pesca pro Pescador
 
-Jardim: Atacar Planta carnívora, Pegar flor, Inspecionar altares
+Jardim: Atacar Planta carnívora, Pegar Flor, Inspecionar altares
 
 Torre de Vigia: Interagir com arqueiro, Pegar Anel do Defensor
 
@@ -44,7 +44,7 @@ Torre do Mago: Interagir com o Velho, Atacar o Mago, Furtar os itens do Mago
 
 Sala do Tesouro?: Resolver enigma
 
-Aposentos: Atacar Cavalheiro Negro, Vasculhar, Pegar vara de pesca
+Aposentos: Atacar Cavalheiro Negro, Vasculhar, Pegar Vara de Pesca
 
 Guardas Reais: Inspecionar estátuas, Despetrificar estátuas, Atacar Guardas
 

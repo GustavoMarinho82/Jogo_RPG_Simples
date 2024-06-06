@@ -42,8 +42,44 @@ def disponiblizar_interacao(interacao):
         var.interacoes_indisponiveis.remove(interacao)
 
 
+def indisponiblizar_interacao(interacao):
+    var.interacoes_indisponiveis.append(interacao)
+    var.interacoes_desbloqueadas.remove(interacao)
+
+
 def desbloquear_interacao(interacao):
     var.interacoes_desbloqueadas.append(interacao)
+
+
+def organizar_inventario():
+    ids_itens = list(var.inventario.keys())
+    ids_itens.sort()
+    inventario_organizado = {}
+
+    for id_item in ids_itens:
+        inventario_organizado[id_item] = var.inventario[id_item]
+    
+    var.inventario = inventario_organizado
+ 
+
+def adicionar_item(item, quantidade):
+    for id_item in var.itens.keys():
+        if (var.itens[id_item]["Nome"] == item):
+            if (id_item in var.inventario.keys()):
+                var.inventario[id_item] += quantidade
+        
+            else:
+                var.inventario[id_item] = quantidade
+            
+            break
+
+
+def subtrair_item(item, quantidade):
+    for id_item in var.itens.keys():
+        if (var.itens[id_item]["Nome"] == item):
+            var.inventario[id_item] -= quantidade
+
+            break
 
 
 def tela_de_inicio():

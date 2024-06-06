@@ -21,7 +21,7 @@ def main():
         match numero_acao:
             case "1": acao.ver_mapa()
             case "2": acao.movimentar()
-            case "3": print() #abrir_inventário()
+            case "3": acao.abrir_inventario()
             case "4": acao.observar_sala()
             case _:
                 exec(case_outras_acoes)

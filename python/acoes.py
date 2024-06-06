@@ -14,11 +14,11 @@ def movimentar():
 
     if (x != 0): pos_mov.append("Norte")
 
-    elif (x != 4): pos_mov.append("Sul")
+    if (x != 4): pos_mov.append("Sul")
 
     if (y != 0): pos_mov.append("Oeste")
 
-    elif (y != 4): pos_mov.append("Leste")
+    if (y != 4): pos_mov.append("Leste")
 
     funcao.print_lento(", ".join(pos_mov))
     
@@ -81,26 +81,85 @@ def observar_sala():
 
 
         if (len(desbloqueadas) == 1):
-            funcao.print_lento("Nova interação desbloqueada: " + desbloqueadas[0])
+            funcao.print_lento("\nNova interação desbloqueada: " + desbloqueadas[0])
 
         elif (desbloqueadas):
-            funcao.print_lento("Novas interações desbloqueadas: " + ", ".join(desbloqueadas))
+            funcao.print_lento("\nNovas interações desbloqueadas: " + ", ".join(desbloqueadas))
 
 
     funcao.enter_para_continuar()
 
 
+#def usar_item(id_item):
 
 
+def abrir_inventario():
+    funcao.limpar_terminal()
+    funcao.organizar_inventario()
 
-#def abrir_inventário():
+    # STATUS E ITENS EQUIPADOS
+    _, vida, mana, max_mana = var.jogador.values()
 
-#def usar_item():
+    id_arma = var.equipamentos["Arma"]
+    id_armadura = var.equipamentos["Armadura"]
+    id_anel = var.equipamentos["Anel"]
+
+    dano = var.itens[id_arma]["Efeito"] if (id_arma not in [27, 28, 29]) else 0
+    defesa = var.itens[id_armadura]["Efeito"]
+    arma = var.itens[id_arma]["Nome"]
+    armadura = var.itens[id_armadura]["Nome"]
+    anel = var.itens[id_anel]["Nome"]
+
+    texto_vida = "Vida: {:>03}/100".format(vida)
+    texto_mana = "Mana: {:>03}/{:<03}".format(mana, max_mana)
+    texto_dano = f"Dano: {dano}"
+    texto_defesa =  f"Defesa: {defesa}"
+    texto_arma = f"Arma: {arma}"
+    texto_armadura = f"Armadura: {armadura}"
+    texto_anel = f"Anel: {anel}"
+
+    print(f" {'_'*70} ")
+    print("| {:^29} | {:^36} |".format("STATUS", "ITENS EQUIPADOS"))
+    print(f"|{'='*31}|{'='*38}|")
+    print("| {:<13} | {:<13} | {:<36} |".format(texto_vida, texto_dano, texto_arma))
+    print("| {:<13} | {:<13} | {:<36} |".format(texto_mana, texto_defesa, texto_armadura))
+    print("| {:<13} | {:<13} | {:<36} |".format("", "", texto_anel))
+    print(f"|{'_'*15}|{'_'*15}|{'_'*38}|")
+
+
+    # INVENTÁRIO
+    print(f" {'_'*43} ")
+    print("| {:<02} | {:<30} |{:^5}|".format("ID", "NOME DO ITEM", "QTD"))
+    print(f"|{'='*4}|{'='*32}|{'='*5}|")
+    
+    for id_item, quantidade in var.inventario.items():
+        nome = var.itens[id_item]["Nome"]
+
+        print("| {:>02} | {:<30} |{:^5}|".format(id_item, nome, quantidade))
+
+    print(f"|{'_'*4}|{'_'*32}|{'_'*5}|")
+
+    funcao.enter_para_continuar()
+
 
 #def atacar():
 
+
 def realizar_acao(acao):
     match acao:
-        case "Rezar":
-            print("Você rezou")
+        case "Pegar Armadura de Couro do esqueleto":
+            # atacar(esqueleto)
+            pass
+
+        case "Pegar Escritura":
+            # desbloqueia magia
+            pass
+
+        case _ if ("Pegar" in acao):
+            item = acao.replace("Pegar ", "")
+
+            funcao.adicionar_item(item, 1)
+            funcao.indisponiblizar_interacao(acao)
+
+            funcao.print_lento("Você obteve:", item)
             funcao.enter_para_continuar()

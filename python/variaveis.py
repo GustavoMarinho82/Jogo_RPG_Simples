@@ -5,7 +5,7 @@ from io import open
 jogador = {"Localizacao": [0, 0], "Vida": 100, "Mana": 100, "Máximo de Mana": 100}
 
 
-# itens = {id: {"Nome": x, "Descrição": y}, ...}  |  Tipos de itens: 0~1-> poções | 2~10-> diversos | 11~17-> anéis | 21~29-> armas | 31~37-> armaduras
+# itens = {id: {"Nome": x, "Descrição": y, "Efeito": z}, ...}  |  Tipos de itens: 0~1-> poções | 2~10-> diversos | 11~17-> anéis | 21~29-> armas | 31~37-> armaduras
 itens = {}
 
 arq = open('arquivos_variaveis/itens.txt', 'r', encoding='utf-8')
@@ -14,9 +14,9 @@ linhas = arq.readlines()
 for linha in linhas:
     linha = linha.strip()
 
-    if (linha != "") and (len(linha.split(" - ")) == 3):
-        id, nome, descricao = linha.split(" - ")
-        itens[int(id)] = {"Nome": nome, "Descrição": descricao}
+    if (linha != "") and (len(linha.split(" - ")) == 4):
+        id, nome, descricao, efeito = linha.split(" - ")
+        itens[int(id)] = {"Nome": nome, "Descrição": descricao, "Efeito": int(efeito)}
 
 arq.close()
 
@@ -30,8 +30,8 @@ for a, b in itens.items():
 inventario = {0: 3, 1: 3, 11: 1, 21: 1, 31: 1}
 
 
-# equipamento -> [0: Arma, 1: Armadura, 2: Anel] (itens equipados pelo jogador)
-equipamentos = [20, 30, 11]
+# equipamentos -> ["Arma": id_do_item, ...] (itens equipados pelo jogador)
+equipamentos = {"Arma": 21, "Armadura": 31, "Anel": 11}
 
 
 # castelo -> [linha de salas][sala] | [0][0] -> "Início"
@@ -66,7 +66,7 @@ for a, b in textos_observacao.items():
 # interacoes_desbloqueadas -> interações que podem ser realizadas | interacoes_indisponiveis -> interações que não podem ser desbloqueadas
 interacoes = {}
 interacoes_desbloqueadas = []
-interacoes_indisponiveis = ["Pegar pena", "Dar vara de pesca pro Pescador", "Atacar Arqueiro", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
+interacoes_indisponiveis = ["Pegar Pena", "Dar vara de pesca pro Pescador", "Atacar Arqueiro", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
 
 arq = open('arquivos_variaveis/acoes.txt', 'r', encoding='utf-8')
 linhas = arq.readlines()
