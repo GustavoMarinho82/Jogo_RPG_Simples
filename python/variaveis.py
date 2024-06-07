@@ -6,7 +6,7 @@ jogador = {"Localizacao": [0, 0], "Vida": 100, "Mana": 100, "Max Mana": 100}
 
 
 # O tipo do item é baseado no seu id: 0~1-> poções | 2~10-> diversos | 11~17-> anéis | 21~29-> armas | 31~37-> armaduras
-itens = {} 
+itens = {}
 
 with open('arquivos_variaveis/itens.txt', 'r', encoding='utf-8') as arq:
     linhas = arq.readlines()
@@ -16,6 +16,8 @@ for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
         id, nome, descricao, efeito = linha.split(" - ")
         itens[int(id)] = {"Nome": nome, "Descrição": descricao, "Efeito": int(efeito)}
 
+
+magias = {"Flecha de Luz": {"Dano": 25, "Custo": 10, "Desbloqueada": False}, "Bola de Fogo": {"Dano": 50, "Custo": 20, "Desbloqueada": False}, "Tempestade de Raios": {"Dano": 75, "Custo": 30, "Desbloqueada": False}}
 
 # inventario = {"ID do Item": Quantidade, ...}
 inventario = {0: 3, 1: 3, 11: 1, 21: 1, 31: 1}
@@ -27,11 +29,7 @@ equipamentos = {"Arma": 21, "Armadura": 31, "Anel": 11}
 
 
 # castelo -> [linha de salas][sala] | [0][0] -> "Início"
-castelo = (["Início", "Estábulos", "Tribunal", "Corredor Estreito", "Sala do Tesouro?"], 
-           ["Pátio", "Sala Aberta", "Armazém", "Biblioteca", "Aposentos"], 
-           ["Ponte Acidentada", "Capela", "Cozinha Real", "Sala do Trono", "Guardas Reais"], 
-           ["Jardim", "Refeitório", "QG", "Armaria", "Quarto do Rei"], 
-           ["Torre de Vigia", "Guarita", "Masmorra", "Torre do Mago", "Sala do Tesouro"])
+castelo = (["Início", "Estábulos", "Tribunal", "Corredor Estreito", "Sala do Tesouro?"], ["Pátio", "Sala Aberta", "Armazém", "Biblioteca", "Aposentos"], ["Ponte Acidentada", "Capela", "Cozinha Real", "Sala do Trono", "Guardas Reais"], ["Jardim", "Refeitório", "QG", "Armaria", "Quarto do Rei"], ["Torre de Vigia", "Guarita", "Masmorra", "Torre do Mago", "Sala do Tesouro"])
 
 
 # salas_descobertas -> usada para indicar quais salas já foram descobertas pelo jogador. Cada coordenada representa a sala com a mesma coordenada em castelo
@@ -64,11 +62,12 @@ for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
         interacoes[sala] = list(acoes)
 
 
+inimigos = {"Esqueleto": {"Vida": 100, "Dano": 1, "Drop": "Armadura de Couro Esfarrapada", "Ação": "Pegar Armadura de Couro do esqueleto"}}
+
 
 with open("arquivos_variaveis/Texto_Inicial.txt", mode="r", encoding="utf-8") as arq:
     texto_de_inicio = arq.read()
 
-#inimigos = []
 
 with open("arquivos_variaveis/Boas_Vindas.txt", mode="r", encoding="utf-8") as arq:
     boas_vindas = arq.read()

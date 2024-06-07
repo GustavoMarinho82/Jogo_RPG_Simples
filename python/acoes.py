@@ -145,21 +145,23 @@ def abrir_inventario():
     texto_arma = f"Arma: {arma}"
     texto_armadura = f"Armadura: {armadura}"
     texto_anel = f"Anel: {anel}"
+    
+    magias_debloqueadas = [magia if (var.magias[magia]["Desbloqueada"]) else "?" for magia in var.magias.keys() ]
 
-    print(f" {'_'*73} ")
-    print("| {:^29} | {:^39} |".format("STATUS", "ITENS EQUIPADOS"))
-    print(f"|{'='*31}|{'='*41}|")
-    print("| {:<13} | {:<13} | {:<39} |".format(texto_vida, texto_dano, texto_arma))
-    print("| {:<13} | {:<13} | {:<39} |".format(texto_mana, texto_defesa, texto_armadura))
-    print("| {:<29} | {:<39} |".format(texto_local, texto_anel))
-    print(f"|{'_'*31}|{'_'*41}|")
+    print(f" {'_'*105} ")
+    print("| {:^29} | {:^39} | {:^29} |".format("STATUS", "ITENS EQUIPADOS", "MAGIAS CONHECIDAS"))
+    print(f"|{'='*31}|{'='*41}|{'='*31}|")
+    print("| {:<13} | {:<13} | {:<39} | {:^29} |".format(texto_vida, texto_dano, texto_arma, magias_debloqueadas[0]))
+    print("| {:<13} | {:<13} | {:<39} | {:^29} |".format(texto_mana, texto_defesa, texto_armadura, magias_debloqueadas[1]))
+    print("| {:<29} | {:<39} | {:^29} |".format(texto_local, texto_anel, magias_debloqueadas[2]))
+    print(f"|{'_'*31}|{'_'*41}|{'_'*31}|")
 
 
     # INVENTÁRIO
     print(f" {'_'*44} ")
     print("| {:<02} | {:<31} |{:^5}|".format("ID", "NOME DO ITEM", "QTD"))
     print(f"|{'='*4}|{'='*33}|{'='*5}|")
-    
+
     for id_item, quantidade in var.inventario.items():
         if (quantidade != 0):
             nome = var.itens[id_item]["Nome"]
@@ -208,14 +210,171 @@ def abrir_inventario():
     funcao.limpar_terminal()
 
 
-#def atacar():
+def atacar(inimigo):
+    vida_inimigo = var.inimigos[inimigo]["Vida"]
+    turno = 1
 
+    while (var.jogador["Vida"] > 0):
+        funcao.limpar_terminal()
+        
+        texto = []
+        texto.append(" MODO DE BATALHA - Turno {:>02}".format(turno))
+        texto.append(f"{'='*28}")
+        texto.append(" Vida: {:>03}/100".format(var.jogador["Vida"]))
+        texto.append(" Mana: {:>03}/{:<03}".format(var.jogador["Mana"], var.jogador["Max Mana"]))
+        texto.append(f"{'='*28}")
+        texto.append(" Possíveis ações:")
+        texto.append("  (1): Bater com sua arma")
+        texto.append("  (2): Usar magia")
+        texto.append("  (3): Canalizar mana")
+        texto.append("  (4): Abrir inventário")
+
+        print(f" {'_'*28} ")
+
+        for linha in texto:
+            print(f"|{linha:<28}|")
+
+        print(f"|{'_'*28}|")
+
+        numero_acao = input("\nRealize uma digitando seu respectivo número: ")
+        
+        funcao.limpar_terminal()
+        
+        match numero_acao:
+            case "1":
+                arma = var.itens[var.equipamentos["Arma"]]["Nome"]
+                dano_dado = var.itens[var.equipamentos["Arma"]]["Efeito"] + (2 if (var.equipamentos["Anel"] == 15) else 0)
+                vida_inimigo -= dano_dado
+                
+                funcao.print_lento(f"Você atacou {inimigo} com {arma}")
+                funcao.print_lento(f"{inimigo} recebeu {dano_dado} de dano")
+                
+                funcao.enter_para_continuar()
+                
+                
+            case "2":
+                
+                    nomes_magias = [magia for magia in var.magias.keys() if (var.magias[magia]["Desbloqueada"])]
+                    
+                    if (len(nomes_magias) == 0):
+                        funcao.print_lento("Você ainda não conhece nenhuma magia...")
+                        
+                        funcao.enter_para_continuar()
+                        
+                        continue
+                    
+                    else:
+                        while (True):
+                            print("Qual magia você deseja usar?")
+                            
+                            for n_magia in [n+1 for n in range(len(nomes_magias))]:
+                                nome_magia = nomes_magias[n_magia-1]
+                                custo_magia = var.magias[nome_magia]["Custo"]
+                                
+                                print(" ({}): {} ({} de mana)".format(n_magia, nome_magia, custo_magia))
+                                
+                            escolha = input("\nDigite o seu respectivo número ou 'Sair' para voltar: ")
+                            
+                            funcao.limpar_terminal()
+                            
+                            match(escolha.casefold()):
+                                case "1": magia_usada = nomes_magias[0]
+                                    
+                                case "2" if (len(nomes_magias) > 1): magia_usada = nomes_magias[1]
+                                
+                                case "3" if (len(nomes_magias) > 2): magia_usada = nomes_magias[2]
+                                
+                                case "sair" | "s": break
+                                    
+                                case _:
+                                    print("Magia inválida!")
+                                    continue
+                            
+                            
+                            if (var.magias[magia_usada]["Custo"] > var.jogador["Mana"]):
+                                print("Não foi possível usar a magia por falta de mana!")
+                                
+                                funcao.enter_para_continuar()
+                                
+                                continue
+                                
+                            else:
+                                var.jogador["Mana"] -= var.magias[magia_usada]["Custo"]
+                                dano_dado = var.magias[magia_usada]["Dano"]
+                                vida_inimigo -= dano_dado
+                                
+                                funcao.print_lento(f"Você usou: {magia_usada}!")
+                                funcao.print_lento(f"{inimigo} recebeu {dano_dado} de dano")
+                                
+                                funcao.enter_para_continuar()
+
+                            break
+                        
+                        
+            case "3":
+                var.jogador["Mana"] = min(var.jogador["Mana"] + int(0.25*var.jogador["Max Mana"]), var.jogador["Max Mana"])
+                
+                funcao.print_lento("Você está canalizando a sua mana...")
+                funcao.print_lento("Parte da sua mana foi recuperada!")
+                
+                funcao.enter_para_continuar()
+
+
+            case "4": 
+                abrir_inventario()
+                continue
+
+
+            case _:
+               print('Ação inválida!') 
+               funcao.enter_para_continuar()
+               continue
+        
+        
+        if (vida_inimigo <= 0):
+            break
+        
+        dano_recebido = var.inimigos[inimigo]["Dano"] - var.itens[var.equipamentos["Armadura"]]["Efeito"] - (2 if (var.equipamentos["Anel"] == 16) else 0)
+        var.jogador["Vida"] -= dano_recebido
+        
+        funcao.print_lento(f"{inimigo} te ataca!")
+        funcao.print_lento(f"Você recebeu {dano_recebido} de dano")
+        
+        funcao.enter_para_continuar()
+        
+        
+        # O turno vira "??", antes de virar um número de 3 algarismos. Pra caixa do modo de batalha não ficar estranha
+        turno = (turno + 1) if (turno not in [99, "??"]) else "??"
+    
+    if (vida_inimigo <= 0):
+        funcao.print_lento(f"Parabéns! {inimigo} foi derrotado!")
+        
+        drop = var.inimigos[inimigo]["Drop"]
+        
+        if (drop != ""):
+            funcao.print_lento(f"{inimigo} dropou {drop}")
+            funcao.adicionar_item(drop, 1)
+        
+        funcao.print_lento("Agora você pode continuar a sua aventura")
+        
+        funcao.indisponiblizar_interacao(var.inimigos[inimigo]["Ação"])
+        
+    else:
+        funcao.print_lento("Sua vida chegou à zero, você morreu...")
+        funcao.print_lento("Você misteriosamente se encontra no início do castelo")
+        
+        var.jogador["Vida"] = 100
+        var.jogador["Localizacao"] = [0,0]
+        
+        
+    funcao.enter_para_continuar()
+        
 
 def realizar_interacao(interacao):
     match interacao:
         case "Pegar Armadura de Couro do esqueleto":
-            # atacar(esqueleto)
-            pass
+            atacar("Esqueleto")
+            
 
         case "Pegar Escritura":
             # desbloqueia magia

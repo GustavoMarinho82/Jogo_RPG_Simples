@@ -13,11 +13,11 @@ Estábulos: Atacar Arqueiro, Interagir com Cuidadora, Fazer carinho no cavalo (a
 
 Sala Aberta: Atacar Cavaleiro Misterioso
 
-Capela: Rezar, Pegar Sino Sagrado, Pegar Escritura
+Capela: Rezar, Pegar Sino Sagrado, Pegar Escritura de Flecha de Luz
 
 Refeitório: Se aproximar da multidão de fantasmas, Pegar Túnica de Aprendiz
 
-Guarita: Atacar Guarda, Pegar Escritura
+Guarita: Atacar Guarda, Pegar Escritura de Bola de Fogo
 
 
 Tribunal: Interagir com o Juiz, Realizar o julgamento
