@@ -211,8 +211,8 @@ def abrir_inventario():
 #def atacar():
 
 
-def realizar_acao(acao):
-    match acao:
+def realizar_interacao(interacao):
+    match interacao:
         case "Pegar Armadura de Couro do esqueleto":
             # atacar(esqueleto)
             pass
@@ -221,11 +221,11 @@ def realizar_acao(acao):
             # desbloqueia magia
             pass
 
-        case _ if ("Pegar" in acao):
-            item = acao.replace("Pegar ", "")
+        case _ if ("Pegar" in interacao):
+            item = interacao.replace("Pegar ", "")
 
             funcao.adicionar_item(item, 1)
-            funcao.indisponiblizar_interacao(acao)
+            funcao.indisponiblizar_interacao(interacao)
 
             funcao.print_lento("Você obteve:", item)
             funcao.enter_para_continuar()
