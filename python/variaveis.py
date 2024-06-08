@@ -74,3 +74,12 @@ with open("arquivos_variaveis/Boas_Vindas.txt", mode="r", encoding="utf-8") as a
 
 
 texto_lento_ativado = True
+
+
+# mov_invalidos -> {destino(tupla): [texto_explicativo (string), origem(ns) (tupla(s))], ...}
+mov_invalidos = {(3,0): ["a ponte está quebrada.", (2,0)], (2,0): ["a ponte está quebrada.", (3,0)], (4,0): ["a porta da torre está trancada.", (3,0)], (3,0): ["a porta da torre está trancada.", (4,0)], (4,2): ["uma barreira mágica do próprio castelo te impede de entrar na masmorra. Somente guardas e prisioneiros podem passar por ela.", (4,1), (3,2), (4,3)], (1,3): ["a porta para biblioteca está trancada.", (0,3), (2,3), (1,2), (1,4)], (4,3): ["uma barreira protetora envolve a entrada para a torre do mago. Mas quem está mantendo essa barreira?", (4,2), (3,3)], (3,4): ["a porta para o quarto do rei está trancada.", (2,4)]}
+
+
+passagem_secreta_descoberta = False
+cavaleiros_reais_derrotados = False
+enigma_salatesourofalse_ativo = False

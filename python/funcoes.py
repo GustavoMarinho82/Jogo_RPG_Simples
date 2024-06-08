@@ -42,9 +42,8 @@ def disponiblizar_interacao(interacao):
         var.interacoes_indisponiveis.remove(interacao)
 
 
-def indisponiblizar_interacao(interacao):
+def indisponibilizar_interacao(interacao):
     var.interacoes_indisponiveis.append(interacao)
-    var.interacoes_desbloqueadas.remove(interacao)
 
 
 def desbloquear_interacao(interacao):

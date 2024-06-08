@@ -9,20 +9,33 @@ def movimentar():
     # pos_mov -> possíveis movimentos
     pos_mov = []
 
-    x, y = var.jogador["Localizacao"]
+    x_origem, y_origem = var.jogador["Localizacao"]
+    x_destino, y_destino = x_origem, y_origem
 
 
-    if (x != 0): pos_mov.append("Norte")
+    if (x_origem != 0): pos_mov.append("Norte")
 
-    if (x != 4): pos_mov.append("Sul")
+    if (x_origem != 4): pos_mov.append("Sul")
 
-    if (y != 0): pos_mov.append("Oeste")
+    if (y_origem != 0): pos_mov.append("Oeste")
 
-    if (y != 4): pos_mov.append("Leste")
+    if (y_origem != 4): pos_mov.append("Leste")
 
+
+    # Movimentos inválidos que não aparecem na seleção de possíveis movimentos
+    match x_origem, y_origem:
+        case (3, 3) | (4, 3) | (0, 3) if (not var.passagem_secreta_descoberta) :
+            pos_mov.remove("Leste")
+            
+        case (2, 4) if (not var.cavaleiros_reais_derrotados):
+            pos_mov.remove("Sul")
+            
+        case (1,4):
+            pos_mov.remove("Norte")
+            
+            
     funcao.print_lento(", ".join(pos_mov))
     
-
     while (True):
         movimento = input().casefold()
 
@@ -31,20 +44,28 @@ def movimentar():
                 print("Movimento inválido! Digite um dos possíveis movimentos:", ", ".join(pos_mov))
                 continue
             
-            case "norte": var.jogador["Localizacao"][0] -= 1
+            case "norte": x_destino -= 1
 
-            case "sul": var.jogador["Localizacao"][0] += 1
+            case "sul": x_destino += 1
 
-            case "leste": var.jogador["Localizacao"][1] += 1
+            case "leste": y_destino += 1
 
-            case "oeste": var.jogador["Localizacao"][1] -= 1
+            case "oeste": y_destino -= 1
 
         break
     
-    x, y = var.jogador["Localizacao"]
-
-    funcao.descobrir_sala((x, y))
-    funcao.print_lento("Você foi para: "+ var.castelo[x][y])
+    
+    if ((x_destino, y_destino) in var.mov_invalidos.keys()) and ((x_origem, y_origem) in var.mov_invalidos[(x_destino, y_destino)]):
+        explicacao = var.mov_invalidos[(x_destino, y_destino)][0]
+        funcao.print_lento(f"Você não consegue ir para o {movimento.capitalize()}, porque {explicacao}")
+        
+        var.jogador["Localizacao"] = x_origem, y_origem
+        
+    else:
+        var.jogador["Localizacao"] = x_destino, y_destino
+        
+        funcao.descobrir_sala((x_destino, y_destino))
+        funcao.print_lento("Você foi para: "+ var.castelo[x_destino][y_destino])
 
     funcao.enter_para_continuar()
 
@@ -357,7 +378,7 @@ def atacar(inimigo):
         
         funcao.print_lento("Agora você pode continuar a sua aventura")
         
-        funcao.indisponiblizar_interacao(var.inimigos[inimigo]["Ação"])
+        funcao.indisponibilizar_interacao(var.inimigos[inimigo]["Ação"])
         
     else:
         funcao.print_lento("Sua vida chegou à zero, você morreu...")
@@ -384,7 +405,7 @@ def realizar_interacao(interacao):
             item = interacao.replace("Pegar ", "")
 
             funcao.adicionar_item(item, 1)
-            funcao.indisponiblizar_interacao(interacao)
+            funcao.indisponibilizar_interacao(interacao)
 
             funcao.print_lento("Você obteve:", item)
             funcao.enter_para_continuar()
