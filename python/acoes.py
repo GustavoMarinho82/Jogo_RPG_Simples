@@ -272,7 +272,6 @@ def atacar(inimigo):
                 
                 funcao.enter_para_continuar()
                 
-                
             case "2":
                 
                     nomes_magias = [magia for magia in var.magias.keys() if (var.magias[magia]["Desbloqueada"])]
@@ -331,7 +330,6 @@ def atacar(inimigo):
 
                             break
                         
-                        
             case "3":
                 var.jogador["Mana"] = min(var.jogador["Mana"] + int(0.25*var.jogador["Max Mana"]), var.jogador["Max Mana"])
                 
@@ -340,11 +338,9 @@ def atacar(inimigo):
                 
                 funcao.enter_para_continuar()
 
-
             case "4": 
                 abrir_inventario()
                 continue
-
 
             case _:
                print('Ação inválida!') 
@@ -393,19 +389,113 @@ def atacar(inimigo):
 
 def realizar_interacao(interacao):
     match interacao:
-        case "Pegar Armadura de Couro do esqueleto":
-            atacar("Esqueleto")
+        case _ if ("Pegar Escritura de" in interacao):
+            magia = interacao.replace("Pegar Escritura de ", "")
             
-
-        case "Pegar Escritura":
-            # desbloqueia magia
-            pass
-
+            var.magias[magia]["Desbloqueada"] = True
+            funcao.print_lento("Você aprendeu: " + magia)
+            
+            funcao.indisponibilizar_interacao(interacao)
+            funcao.enter_para_continuar()
+            
         case _ if ("Pegar" in interacao):
             item = interacao.replace("Pegar ", "")
 
             funcao.adicionar_item(item, 1)
+            funcao.print_lento("Você obteve: " + item)
+            
             funcao.indisponibilizar_interacao(interacao)
-
-            funcao.print_lento("Você obteve:", item)
             funcao.enter_para_continuar()
+
+        case _ if "Atacar" in interacao:
+            inimigo = interacao.replace("Atacar ", "")
+            atacar(inimigo)
+            
+        case "Pegar Armadura de Couro do esqueleto":
+            atacar("Esqueleto")
+            
+        case "Interagir com Pescador":
+            pass
+        
+        case "Espantar pássaro":
+            pass
+        
+        case "Dar Vara de Pesca pro Pescador":
+            pass
+        
+        case "Inspecionar altares":
+            pass
+        
+        case "Destrancar o acesso ao jardim":
+            pass
+        
+        case "Acordar Arqueiro":
+            pass
+        
+        case "Interagir com Cuidadora":
+            pass
+        
+        case "Fazer carinho no cavalo":
+            pass
+        
+        case "Rezar":
+            pass
+        
+        case "Se aproximar da multidão de fantasmas":
+            pass
+        
+        case "Interagir com o Juiz":
+            pass
+        
+        case "Realizar o julgamento":
+            pass
+        
+        case "Interagir com Padre":
+            pass
+        
+        case "Reeabastecer poções nas fontes":
+            pass
+        
+        case "Comer restos de comida":
+            pass
+        
+        case "Checar registros de batalhas (Descobre o porque do rei morreu)":
+            pass
+        
+        case "Vasculhar":
+            match var.jogador["Localização"]:
+                case _: 
+                    pass
+        
+        case "Liberar passagem secreta":
+            pass
+        
+        case "Checar registros sobre comandante":
+            pass
+        
+        case "Checar registros sobre o mago":
+            pass
+        
+        case "Checar registros sobre o rei":
+            pass
+        
+        case "Interagir com o Velho":
+            pass
+        
+        case "Atacar o Mago":
+            pass
+        
+        case "Furtar os itens do Mago":
+            pass
+        
+        case "Resolver enigma":
+            pass
+        
+        case "Pegar Vara de Pesca":
+            pass
+        
+        case "Inspecionar estátuas":
+            pass
+        
+        case "Despetrificar estátuas":
+            pass

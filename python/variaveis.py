@@ -52,7 +52,7 @@ interacoes = {}
 interacoes_desbloqueadas = []
 interacoes_indisponiveis = ["Pegar Pena", "Dar vara de pesca pro Pescador", "Atacar Arqueiro", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
 
-with open('arquivos_variaveis/acoes.txt', 'r', encoding='utf-8') as arq:
+with open('arquivos_variaveis/Interacoes.txt', 'r', encoding='utf-8') as arq:
     linhas = arq.readlines()
 
 for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:

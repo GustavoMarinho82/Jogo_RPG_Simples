@@ -6,7 +6,7 @@ Ponte Acidentada: Interagir com o Pescador, Espantar pássaro, Pegar Pena, Dar V
 
 Jardim: Atacar Planta carnívora, Pegar Flor, Inspecionar altares
 
-Torre de Vigia: Destrancar o acesso ao jardim, Interagir com arqueiro, Pegar Anel do Defensor
+Torre de Vigia: Destrancar o acesso ao jardim, Acordar Arqueiro, Pegar Anel do Defensor
 
 
 Estábulos: Atacar Arqueiro, Interagir com Cuidadora, Fazer carinho no cavalo (a NPC te dá espada de ferro)
