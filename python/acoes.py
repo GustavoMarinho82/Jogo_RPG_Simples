@@ -69,7 +69,7 @@ def movimentar():
             funcao.print_lento("Você foi para: "+ var.castelo[x_destino][y_destino])
 
     except:
-        print("Erro ao ler o input!")
+        print("Movimento cancelado!")
     
     finally:
         funcao.enter_para_continuar()
@@ -398,7 +398,7 @@ def realizar_interacao(interacao):
             magia = interacao.replace("Pegar Escritura de ", "")
             
             var.magias[magia]["Desbloqueada"] = True
-            funcao.print_lento("Você aprendeu: " + magia)
+            funcao.print_lento(f"Você aprendeu uma nova magia: {magia}.")
             
             funcao.indisponibilizar_interacao(interacao)
             funcao.enter_para_continuar()
@@ -408,7 +408,7 @@ def realizar_interacao(interacao):
             item = interacao.replace("Pegar ", "")
 
             funcao.adicionar_item(item, 1)
-            funcao.print_lento("Você obteve: " + item)
+            funcao.print_lento(f"Você obteve: {item}.")
             
             funcao.indisponibilizar_interacao(interacao)
             funcao.enter_para_continuar()
@@ -480,7 +480,13 @@ def realizar_interacao(interacao):
             pass
         
         case "Rezar":
-            pass
+            funcao.print_lento("Você se ajoelha para a grande estátua e começa a rezar...")
+            funcao.print_lento("Mana completamente recuperada.")
+            
+            var.jogador["Mana"] = var.jogador["Max Mana"]
+            
+            funcao.enter_para_continuar()
+        
         
         case "Se aproximar da multidão de fantasmas":
             pass
@@ -492,14 +498,25 @@ def realizar_interacao(interacao):
             pass
         
         case "Interagir com Padre":
-            pass
+            funcao.desbloquear_interacao("Reeabastecer poções nas fontes")
         
         case "Reeabastecer poções nas fontes":
-            pass
+            funcao.print_lento("Você reabastece suas poções a partir das fontes estranhas...")
+            
+            funcao.adicionar_item("Poção de Vida", 3 - var.inventario[0])
+            funcao.adicionar_item("Poção de Mana", 3 - var.inventario[1])
+            
+            funcao.enter_para_continuar()
+        
         
         case "Comer restos de comida":
-            pass
-        
+            funcao.print_lento("Você come os restos de comida espalhados pela cozinha. Eles possuem um gosto duvidoso.")
+            funcao.print_lento("Vida completamente recuperada.")
+            
+            var.jogador["Vida"] = 100
+            
+            funcao.enter_para_continuar()
+
         case "Checar registros de batalhas (Descobre o porque do rei morreu)":
             pass
         

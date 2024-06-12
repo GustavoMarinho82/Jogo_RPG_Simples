@@ -14,7 +14,7 @@ def print_lento(texto):
     for letra in texto:
         print(letra, end="")
         stdout.flush()
-        sleep(0.05 if (var.texto_lento_ativado) else 0)
+        sleep(0.03 if (var.texto_lento_ativado) else 0)
 
     print("")
 
