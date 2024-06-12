@@ -47,6 +47,7 @@ def indisponibilizar_interacao(interacao):
 
 
 def desbloquear_interacao(interacao):
+    disponiblizar_interacao(interacao)
     var.interacoes_desbloqueadas.append(interacao)
 
 
@@ -146,7 +147,7 @@ def outras_acoes():
         numero_acao = 5
 
         for interacao in var.interacoes[nome_sala]:
-            if (interacao in var.interacoes_desbloqueadas):
+            if (interacao in var.interacoes_desbloqueadas) and (interacao not in var.interacoes_indisponiveis):
                 print(f" ({numero_acao}): {interacao}")
                 case_outras_acoes += f"case '{numero_acao}': acao.realizar_interacao('{interacao}') \n\t"
                 numero_acao += 1

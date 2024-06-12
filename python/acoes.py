@@ -3,71 +3,76 @@ import python.funcoes as funcao
 
 
 def movimentar():
-    print("Deseja se movimentar para onde?")
-    print("Possíveis movimentos: ", end="")
-    
-    # pos_mov -> possíveis movimentos
-    pos_mov = []
-
-    x_origem, y_origem = var.jogador["Localizacao"]
-    x_destino, y_destino = x_origem, y_origem
-
-
-    if (x_origem != 0): pos_mov.append("Norte")
-
-    if (x_origem != 4): pos_mov.append("Sul")
-
-    if (y_origem != 0): pos_mov.append("Oeste")
-
-    if (y_origem != 4): pos_mov.append("Leste")
-
-
-    # Movimentos inválidos que não aparecem na seleção de possíveis movimentos
-    match x_origem, y_origem:
-        case (3, 3) | (4, 3) | (0, 3) if (not var.passagem_secreta_descoberta) :
-            pos_mov.remove("Leste")
-            
-        case (2, 4) if (not var.cavaleiros_reais_derrotados):
-            pos_mov.remove("Sul")
-            
-        case (1,4):
-            pos_mov.remove("Norte")
-            
-            
-    funcao.print_lento(", ".join(pos_mov))
-    
-    while (True):
-        movimento = input().casefold()
-
-        match movimento:
-            case _ if (movimento not in [mov.casefold() for mov in pos_mov]):
-                print("Movimento inválido! Digite um dos possíveis movimentos:", ", ".join(pos_mov))
-                continue
-            
-            case "norte": x_destino -= 1
-
-            case "sul": x_destino += 1
-
-            case "leste": y_destino += 1
-
-            case "oeste": y_destino -= 1
-
-        break
-    
-    
-    if ((x_destino, y_destino) in var.mov_invalidos.keys()) and ((x_origem, y_origem) in var.mov_invalidos[(x_destino, y_destino)]):
-        explicacao = var.mov_invalidos[(x_destino, y_destino)][0]
-        funcao.print_lento(f"Você não consegue ir para o {movimento.capitalize()}, porque {explicacao}")
+    try:  
+        print("Deseja se movimentar para onde?")
+        print("Possíveis movimentos: ", end="")
         
-        var.jogador["Localizacao"] = x_origem, y_origem
-        
-    else:
-        var.jogador["Localizacao"] = x_destino, y_destino
-        
-        funcao.descobrir_sala((x_destino, y_destino))
-        funcao.print_lento("Você foi para: "+ var.castelo[x_destino][y_destino])
+        # pos_mov -> possíveis movimentos
+        pos_mov = []
 
-    funcao.enter_para_continuar()
+        x_origem, y_origem = var.jogador["Localizacao"]
+        x_destino, y_destino = x_origem, y_origem
+
+
+        if (x_origem != 0): pos_mov.append("Norte")
+
+        if (x_origem != 4): pos_mov.append("Sul")
+
+        if (y_origem != 0): pos_mov.append("Oeste")
+
+        if (y_origem != 4): pos_mov.append("Leste")
+
+
+        # Movimentos inválidos que não aparecem na seleção de possíveis movimentos
+        match x_origem, y_origem:
+            case (3, 3) | (4, 3) | (0, 3) if (not var.passagem_secreta_descoberta) :
+                pos_mov.remove("Leste")
+                
+            case (2, 4) if (not var.cavaleiros_reais_derrotados):
+                pos_mov.remove("Sul")
+                
+            case (1,4):
+                pos_mov.remove("Norte")
+                
+                
+        funcao.print_lento(", ".join(pos_mov))
+        
+        while (True):
+            movimento = input().casefold()
+
+            match movimento:
+                case _ if (movimento not in [mov.casefold() for mov in pos_mov]):
+                    print("Movimento inválido! Digite um dos possíveis movimentos:", ", ".join(pos_mov))
+                    continue
+                
+                case "norte": x_destino -= 1
+
+                case "sul": x_destino += 1
+
+                case "leste": y_destino += 1
+
+                case "oeste": y_destino -= 1
+
+            break
+        
+        
+        if ((x_destino, y_destino) in var.mov_invalidos.keys()) and ((x_origem, y_origem) in var.mov_invalidos[(x_destino, y_destino)]):
+            explicacao = var.mov_invalidos[(x_destino, y_destino)][0]
+            funcao.print_lento(f"Você não consegue ir para o {movimento.capitalize()}, porque {explicacao}")
+            
+            var.jogador["Localizacao"] = x_origem, y_origem
+            
+        else:
+            var.jogador["Localizacao"] = x_destino, y_destino
+            
+            funcao.descobrir_sala((x_destino, y_destino))
+            funcao.print_lento("Você foi para: "+ var.castelo[x_destino][y_destino])
+
+    except:
+        print("Erro ao ler o input!")
+    
+    finally:
+        funcao.enter_para_continuar()
 
 
 def ver_mapa():
@@ -397,7 +402,8 @@ def realizar_interacao(interacao):
             
             funcao.indisponibilizar_interacao(interacao)
             funcao.enter_para_continuar()
-            
+
+
         case _ if ("Pegar" in interacao):
             item = interacao.replace("Pegar ", "")
 
@@ -407,22 +413,57 @@ def realizar_interacao(interacao):
             funcao.indisponibilizar_interacao(interacao)
             funcao.enter_para_continuar()
 
+
         case _ if "Atacar" in interacao:
             inimigo = interacao.replace("Atacar ", "")
             atacar(inimigo)
             
+            
         case "Pegar Armadura de Couro do esqueleto":
             atacar("Esqueleto")
             
-        case "Interagir com Pescador":
-            pass
+            
+        case "Interagir com o Pescador":
+            funcao.print_lento("Pescador: Oh, uai. Nem vi que tinha alguém por aqui, tava distraído olhando o azulzão do lago que um dia foi meu sustento, até minha vara de pesca quebrar e eu ter que começar a comer essa comida véia e podre do castelo.")
+            funcao.print_lento("\nPescador: Já faz um tempão que nenhum vivente aparece nesse castelo abandonado. Quer dizer, aparecer, aparece, mas eles vêm é pra saquear o tesouro do nosso rei morto. Só que no fim, todo mundo que se aventura por aqui só encontra a morte. O povo que mora no interior do castelo não gosta nadinha de humanos, mas pode ficar tranquilo comigo, sou só um véio pescador que não quer briga, então nem pense em puxar sua espada pra mim.")
+            funcao.print_lento("\nPescador: Eu te digo pra desistir dessa aventura sua e passar o resto da vida de boa como eu, só pescando e sentindo a brisa do vento batendo no seu chapéu de pescador. Mas se você quer mesmo se aventurar por esse castelo, recomendo ficar longe da comida da cozinha real no meio do castelo, a não ser que você esteja morrendo de fome e precise recuperar as forças.")
+            
+            if ("Dar Vara de Pesca pro Pescador" in var.interacoes_desbloqueadas) and ("Dar Vara de Pesca pro Pescador" in var.interacoes_indisponiveis):
+                funcao.print_lento("\nPescador: Ah, tô tão feliz com minha nova vara de pesca :)")
+                
+            else:
+                funcao.print_lento("\nPescador: Ah, como eu queria minha vara de pesca de volta...")
+
+            if (var.salas_descobertas[2][2] == False):
+                funcao.print_lento("\nNova sala descoberta: Cozinha Real")
+                funcao.descobrir_sala((2, 2))
+                
+            funcao.enter_para_continuar()
+        
         
         case "Espantar pássaro":
-            pass
-        
+            funcao.print_lento("Num impulso sádico, você espanta o pobre pássaro distraído. Que ação repulsiva!")
+            funcao.print_lento("Algumas penas se desprendem do pássaro e se espalham pela grama.")
+            
+            funcao.print_lento("\nNova ação desbloqueada: Pegar Pena")
+            
+            funcao.desbloquear_interacao("Pegar Pena")
+            funcao.indisponibilizar_interacao("Espantar pássaro")
+            
+            funcao.enter_para_continuar()
+
+
         case "Dar Vara de Pesca pro Pescador":
-            pass
-        
+            funcao.print_lento("Pescador: Nossa, ocê é bão demais! Agora finalmente vou poder pescar de novo. Como agradecimento, vou pescar um peixão bem bão pra ocê.")
+            funcao.print_lento("\nNuma puxada bem rápida e forte, um peixe bem grande voa do mar até as sua mãos.")
+            
+            funcao.subtrair_item("Vara de Pesca", 1)
+            funcao.adicionar_item("Peixe", 1)
+            funcao.indisponibilizar_interacao("Dar Vara de Pesca pro Pescador")
+            
+            funcao.enter_para_continuar
+
+
         case "Inspecionar altares":
             pass
         

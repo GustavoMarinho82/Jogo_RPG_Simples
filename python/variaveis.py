@@ -50,7 +50,7 @@ for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
 # interacoes_desbloqueadas -> interações que podem ser realizadas | interacoes_indisponiveis -> interações que não podem ser desbloqueadas
 interacoes = {}
 interacoes_desbloqueadas = []
-interacoes_indisponiveis = ["Pegar Pena", "Dar vara de pesca pro Pescador", "Atacar Arqueiro", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
+interacoes_indisponiveis = ["Pegar Pena", "Dar Vara de Pesca pro Pescador", "Atacar Arqueiro", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas"]
 
 with open('arquivos_variaveis/Interacoes.txt', 'r', encoding='utf-8') as arq:
     linhas = arq.readlines()

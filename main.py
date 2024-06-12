@@ -1,10 +1,13 @@
 import python.funcoes as funcao
 import python.acoes as acao
+#import python.variaveis as var
 
 
 def main():
     funcao.tela_de_inicio()
 
+    #var.jogador["Localizacao"] = [2, 0]
+    
     while (True):
         print("Possíveis ações:")
         print(" (1): Ver o mapa")
