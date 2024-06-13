@@ -15,7 +15,7 @@ Sala Aberta: Atacar Cavaleiro Misterioso
 
 Capela: Rezar, Pegar Sino Sagrado, Pegar Escritura de Flecha de Luz
 
-Refeitório: Se aproximar da multidão de fantasmas, Pegar Túnica de Aprendiz
+Refeitório: Se aproximar da multidão de fantasmas, Pegar Túnica de Aprendiz, Pegar Anel Abençoado
 
 Guarita: Atacar Guarda, Pegar Escritura de Bola de Fogo
 
@@ -46,7 +46,7 @@ Sala do Tesouro?: Resolver enigma
 
 Aposentos: Atacar Cavalheiro Negro, Vasculhar, Pegar Vara de Pesca
 
-Guardas Reais: Inspecionar estátuas, Despetrificar estátuas, Atacar Guardas
+Guardas Reais: Inspecionar estátuas, Despetrificar estátuas, Atacar Guardas Reais
 
 Quarto do Rei: Vasculhar
 

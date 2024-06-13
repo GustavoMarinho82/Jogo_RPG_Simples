@@ -37,7 +37,7 @@ def descobrir_sala(coordenadas):
     var.salas_descobertas[x][y] = True
 
 
-def disponiblizar_interacao(interacao):
+def disponibilizar_interacao(interacao):
     if (interacao in var.interacoes_indisponiveis):
         var.interacoes_indisponiveis.remove(interacao)
 
@@ -47,7 +47,7 @@ def indisponibilizar_interacao(interacao):
 
 
 def desbloquear_interacao(interacao):
-    disponiblizar_interacao(interacao)
+    disponibilizar_interacao(interacao)
     var.interacoes_desbloqueadas.append(interacao)
 
 

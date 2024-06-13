@@ -401,7 +401,6 @@ def realizar_interacao(interacao):
             funcao.print_lento(f"Você aprendeu uma nova magia: {magia}.")
             
             funcao.indisponibilizar_interacao(interacao)
-            funcao.enter_para_continuar()
 
 
         case _ if ("Pegar" in interacao):
@@ -411,7 +410,6 @@ def realizar_interacao(interacao):
             funcao.print_lento(f"Você obteve: {item}.")
             
             funcao.indisponibilizar_interacao(interacao)
-            funcao.enter_para_continuar()
 
 
         case _ if "Atacar" in interacao:
@@ -437,8 +435,6 @@ def realizar_interacao(interacao):
             if (var.salas_descobertas[2][2] == False):
                 funcao.print_lento("\nNova sala descoberta: Cozinha Real")
                 funcao.descobrir_sala((2, 2))
-                
-            funcao.enter_para_continuar()
         
         
         case "Espantar pássaro":
@@ -449,8 +445,6 @@ def realizar_interacao(interacao):
             
             funcao.desbloquear_interacao("Pegar Pena")
             funcao.indisponibilizar_interacao("Espantar pássaro")
-            
-            funcao.enter_para_continuar()
 
 
         case "Dar Vara de Pesca pro Pescador":
@@ -460,36 +454,54 @@ def realizar_interacao(interacao):
             funcao.subtrair_item("Vara de Pesca", 1)
             funcao.adicionar_item("Peixe", 1)
             funcao.indisponibilizar_interacao("Dar Vara de Pesca pro Pescador")
-            
-            funcao.enter_para_continuar
 
 
         case "Inspecionar altares":
             pass
         
         case "Destrancar o acesso ao jardim":
-            pass
+            funcao.print_lento("Você destranca a porta da torre de vigia.")
+            
+            var.mov_invalidos.remove((4,0), (3,0))
+        
         
         case "Acordar Arqueiro":
-            pass
+            funcao.print_lento("Você dá um susto no arqueiro para acordá-lo.")
+            funcao.print_lento("Ele imediatamente dá um pulo e desce a torre numa velocidade extremamente alta.")
+            funcao.print_lento("Parece que ele seguiu ao norte após chegar na guarita.")
+            
+            var.arqueiro_nos_estabulos = True
+            
+            funcao.indisponibilizar_interacao("Acordar Arqueiro")
+            funcao.desbloquear_interacao("Atacar Arqueiro")
+            
+            funcao.print_lento("\nNova interação desbloqueada em: Estábulos")
+
         
         case "Interagir com Cuidadora":
             pass
         
+        
         case "Fazer carinho no cavalo":
-            pass
+            funcao.print_lento("Você faz carinho no cavalo...")
+            funcao.print_lento("Ele relincha para você...")
+            funcao.print_lento("Ele parece gostar mais de você agora...")
+            
         
         case "Rezar":
             funcao.print_lento("Você se ajoelha para a grande estátua e começa a rezar...")
             funcao.print_lento("Mana completamente recuperada.")
             
             var.jogador["Mana"] = var.jogador["Max Mana"]
-            
-            funcao.enter_para_continuar()
         
         
         case "Se aproximar da multidão de fantasmas":
-            pass
+            funcao.print_lento("Ao se aproximar da multidão de fantasmas, você vê que eles estão envolta de um anel brilhante jogado no chão.")
+            
+            funcao.disponibilizar_interacao("Pegar Anel Abençoado")
+            
+            funcao.print_lento("\nNova interação desbloqueada: Pegar Anel Abençoado.")
+            
         
         case "Interagir com o Juiz":
             pass
@@ -505,8 +517,6 @@ def realizar_interacao(interacao):
             
             funcao.adicionar_item("Poção de Vida", 3 - var.inventario[0])
             funcao.adicionar_item("Poção de Mana", 3 - var.inventario[1])
-            
-            funcao.enter_para_continuar()
         
         
         case "Comer restos de comida":
@@ -514,8 +524,7 @@ def realizar_interacao(interacao):
             funcao.print_lento("Vida completamente recuperada.")
             
             var.jogador["Vida"] = 100
-            
-            funcao.enter_para_continuar()
+
 
         case "Checar registros de batalhas (Descobre o porque do rei morreu)":
             pass
@@ -526,7 +535,11 @@ def realizar_interacao(interacao):
                     pass
         
         case "Liberar passagem secreta":
-            pass
+            funcao.print_lento("Passagem secreta liberada.")
+            
+            var.passagem_secreta_descoberta = True
+            funcao.indisponibilizar_interacao("Liberar passagem secreta")
+        
         
         case "Checar registros sobre comandante":
             pass
@@ -539,21 +552,37 @@ def realizar_interacao(interacao):
         
         case "Interagir com o Velho":
             pass
-        
-        case "Atacar o Mago":
-            pass
+
         
         case "Furtar os itens do Mago":
-            pass
+            funcao.print_lento("Você furta os itens do corpo enfraquecido e sem vida do Mago.")
+            funcao.print_lento("Você obteve: Cajado Desgastado de Lincaindir e Túnica de Lincaindir.")
+            funcao.print_lento("E aprendeu uma nova magia poderosa: Tempestade de Raios.")
+            
+            funcao.adicionar_item("Cajado Desgastado de Lincaindir", 1)
+            funcao.adicionar_item("Túnica de Lincaindir", 1)
+            var.magias["Tempestade de Raios"]["Desbloqueada"] = True
+            
+            funcao.indisponibilizar_interacao("Furtar os itens do Mago")
+        
         
         case "Resolver enigma":
             pass
         
-        case "Pegar Vara de Pesca":
-            pass
-        
         case "Inspecionar estátuas":
-            pass
+            funcao.print_lento("Você encara as imóveis e realistas estátuas...")
+            funcao.print_lento("Elas se assemelham com as outras estátuas de guardas que você viu em vários lugares do castelo.")
+            funcao.print_lento("Mas essas na sua frente possuem algumas diferenças visuais e te passam uma sensação estranha, mas você não sabe o motivo desse sentimento.")
+            funcao.print_lento("Estranho...")
+            
         
         case "Despetrificar estátuas":
-            pass
+            funcao.print_lento("Você despeja um pouco da Água Sagrada nas estátuas de pedra em frente à grande porta...")
+            funcao.print_lento("As estátuas de pedra se quebram diante de seus olhos e guardas reais emergem delas.")
+            
+            funcao.disponibilizar_interacao("Atacar Guardas Reais")
+            
+            realizar_interacao("Atacar Guardas Reais")
+
+    
+    funcao.enter_para_continuar()

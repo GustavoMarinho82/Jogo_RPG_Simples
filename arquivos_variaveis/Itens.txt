@@ -12,7 +12,7 @@
 10 - Chave da Sala do Tesouro - Finalmente, agora só falta achar a Sala do Tesouro. Garante acesso à Sala do Tesouro - 0
 
 11 - Anel de Família - Um anel herdado de seu avô. Não vale muito e não possui nenhum efeito especial - 0
-12 - Anel Abençoado - Emite uma aura angelical, você estranhamente sente uma vontade de doar seus bens para o padre - 0
+12 - Anel Abençoado - Emite uma aura angelical, você estranhamente sente uma vontade de doar seus bens para a igreja - 0
 13 - Anel Secreto - Parece bem secreto, revela o que os seus olhos não enxergam - 0
 14 - Anel da Restauração - Após cada batalha, restaura completamente sua energia - 0
 15 - Anel do Combatente - Garante +2 de dano - 2
