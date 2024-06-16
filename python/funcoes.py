@@ -6,25 +6,42 @@ import python.variaveis as var
 
 def limpar_terminal():
     match sysname:
-        case "nt": system("cls")
-        case _: system("clear")
+            case "nt": system("cls")
+            case _: system("clear")
 
         
 def print_lento(texto):
-    for letra in texto:
-        print(letra, end="")
-        stdout.flush()
-        sleep(0.03 if (var.texto_lento_ativado) else 0)
-
-    print("")
+    try:
+        for letra in texto:
+            print(letra, end="")
+            stdout.flush()
+            sleep(var.texto_lento_velocidade)
+            
+        print("")
+        
+    except:
+        print("(Output do texto cancelado pelo input Ctrl + c) (Não é recomendado continuar enviando esse input)")
 
 
 def enter_para_continuar():
     sleep(1)
     input("(Pressione 'Enter' para continuar)")
     limpar_terminal()
+        
 
+def fechar_jogo(escolha):
+    if (escolha):
+        print_lento("Você tem certeza de que deseja fechar o jogo? Seu progresso será perdido.")
 
+        if (input("Fechar o jogo? (Sim / Não): ").casefold() in ["sim", "s"]):
+            var.fim_de_jogo = True
+        
+    else:
+        var.fim_de_jogo = True
+        
+    limpar_terminal()
+    
+    
 def obter_coordenadas(sala):
     for x in range(5):
         if sala in var.castelo[x]:
@@ -83,58 +100,107 @@ def subtrair_item(item, quantidade):
 
 
 def atualizar_max_mana():
-    novo_max_mana = 100   
+    var.jogador["Max Mana"] = 100   
     id_arma, id_armadura, id_anel = var.equipamentos.values()
 
     if (id_arma in [27, 28, 29]):
-        novo_max_mana += var.itens[id_arma]["Efeito"]
+        var.jogador["Max Mana"] += var.itens[id_arma]["Efeito"]
     
     if (id_armadura == 36):
-        novo_max_mana += 25
+        var.jogador["Max Mana"] += 25
 
     elif (id_armadura == 37):
-        novo_max_mana += 45
+        var.jogador["Max Mana"] += 45
 
     if (id_anel == 17):
-        novo_max_mana += 30
+        var.jogador["Max Mana"] += 30
 
-    var.jogador["Mana"] = min(var.jogador["Mana"], novo_max_mana)
-    var.jogador["Max Mana"] = novo_max_mana
+    var.jogador["Mana"] = var.jogador["Max Mana"]
 
 
 def tela_de_inicio():
     while (True):
-        print(var.boas_vindas)
-        print("(1): Iniciar jogo")
-        print("(2): Carregar jogo já salvo")
-        print("(3):", "Desativar" if (var.texto_lento_ativado) else "Ativar", "textos lentos")
-        
-        opcao = input("O que você deseja fazer (Digite o número correspondente): ")
+        try:
+            print(var.boas_vindas)
+            print("(1): Iniciar jogo")
+            print("(2): Fechar o jogo")
+            print("(3): Alterar a velocidade dos textos lentos")
+            
+            
+            opcao = input("O que você deseja fazer (Digite o número correspondente): ")
 
-        match opcao:
-            case "1":
-                escolha = input("Você deseja ver a introdução? (Sim / Não): ")
+            limpar_terminal()
+            
+            match opcao:
+                case "1":
+                    escolha = input("Você deseja ver a introdução? (Sim / Não): ")
+                    
+                    match escolha.casefold():
+                        case "sim" | "s":
+                            limpar_terminal()
+                            print_lento(var.texto_de_inicio)
+                            sleep(1)
+                            input("(Pressione 'Enter' para iniciar a sua aventura)")
+
+                case "2":
+                    fechar_jogo(False)
                 
-                match escolha.casefold():
-                    case "sim" | "s":
+                case "3": 
+                    while (True):
+                        velocidade_anterior = var.texto_lento_velocidade
+                        
+                        print("(1): Rápida")
+                        print("(2): Média")
+                        print("(3): Lenta")
+                        print("(4): Desativar textos lentos")
+                        print("(5): Voltar")
+                        
+                        velocidade = input("Selecione uma velocidade: ")
+                        
                         limpar_terminal()
-                        print_lento(var.texto_de_inicio)
-                        sleep(1)
-                        input("(Pressione 'Enter' para iniciar a sua aventura)")
+                        
+                        match velocidade:
+                            case "1": var.texto_lento_velocidade = 0.01
+                            case "2": var.texto_lento_velocidade = 0.025
+                            case "3": var.texto_lento_velocidade = 0.05
+                            case "4": var.texto_lento_velocidade = 0
+                            case "5": break
+                            case _:
+                                print("Opção inválida!")
+                                enter_para_continuar()
+                                break
+                        
+                        print_lento("Essa é uma amostragem da velocidade escolhida. Você tem certeza de que deseja alterar a velocidade dos textos lentos para essa? ")
+                        
+                        resposta = input("(Sim / Não): ")
+                        
+                        if (resposta.casefold() not in ["sim", "s"]):
+                            var.texto_lento_velocidade = velocidade_anterior
+                            limpar_terminal()
+                            continue
+                            
+                        break
+                    
+                    continue
 
-            case "2": continue #Não implementado ainda
 
-            case "3": 
-                var.texto_lento_ativado = False if (var.texto_lento_ativado) else True
-                limpar_terminal()
-                continue
+                case _: 
+                    print("Opção inválida!")
+                    enter_para_continuar()
+                    continue
 
-            case _: 
-                limpar_terminal()
-                continue
+            limpar_terminal()
+            break
+        
+        except:
+            limpar_terminal()
 
-        limpar_terminal()
-        break
+
+def encerramento():
+    print_lento("Você finalmente chegou na sala do tesouro! E dessa vez é a verdadeira.")
+    print_lento("Diante de seus olhos, uma vasta coleção de riquezas se revela, reluzindo sob a luz suave que penetra pelas frestas das paredes de pedra. Ouro, joias, artefatos raros e relíquias de tempos antigos preenchem a sala, espalhando um brilho encantador por todo o ambiente.")
+    print_lento("Com uma sensação de triunfo e alívio, você agora é o ser mais rico de todas as terras que se tem conhecimento. A partir de agora, sua vida estará repleta de conforto e luxos, graças ao tesouro saqueado do finado rei Karyon.")
+    print_lento("\nCom isso, sua jornada chega ao fim. Obrigado por jogar!")
 
 
 # Printa as outras ações possíveis e retorna um trecho de código para o exec() no match de escolher uma ação
@@ -144,7 +210,7 @@ def outras_acoes():
     
     if (nome_sala in var.interacoes.keys()):
         case_outras_acoes = "match numero_acao: \n\t" 
-        numero_acao = 5
+        numero_acao = 6
 
         for interacao in var.interacoes[nome_sala]:
             if (interacao in var.interacoes_desbloqueadas) and (interacao not in var.interacoes_indisponiveis):

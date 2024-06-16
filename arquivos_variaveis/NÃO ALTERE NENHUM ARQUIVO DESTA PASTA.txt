@@ -1,0 +1,4 @@
+Alterações podem resultar em comportamentos inesperados.
+
+Caso você tenha alterado algum arquivo, baixe o projeto de novo em:
+https://github.com/GustavoMarinho82/Jogo_RPG_Simples

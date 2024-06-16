@@ -1,0 +1,34 @@
+Mapa completo do castelo:
++-------------------------------------------------------------------------------+
+|Início		|Estábulos	|Tribunal	|CorredorEstreit|Sala do Tesour?|
++---------------|---------------|---------------|---------------|---------------+
+|Pátio		|Sala Aberta	|Armazém	|Biblioteca     |Aposentos      |
++---------------|---------------|---------------|---------------|---------------+
+|Ponte Acidentad|Capela		|Cozinha Real	|Sala do Trono	|Guardas Reais	|
++---------------|---------------|---------------|---------------|---------------+
+|Jardim		|Refeitório     |QG             |Armaria	|Quarto do Rei	|
++---------------|---------------|---------------|---------------|---------------+
+|Torre de Vigia	|Guarita	|Masmorra	|Torre do Mago	|Sala do Tesouro|
++-------------------------------------------------------------------------------+
+
+
+
+Enigmas:
+	Jardim -> 
+		1. A ESPADA PODE MARCAR OS VIVOS COM FERIMENTOS, ENQUANTO ELA PODE MARCAR O PAPEL COM CONHECIMENTO (Resposta: pena)
+		2. ABENÇOADA PELA SUA BELEZA, ARRANCADA DE SEU PRÓPRIO LUGAR POR ELA. OU MELHOR, MALDIÇOADA PELA SUA BENÇÃO (Resposta: flor)
+		3. VIVO E SALTITANTE ENQUANTO MOLHADO, MORTO E COZIDO ENQUANTO SECO (Resposta: peixe)
+
+
+	Tribunal ->
+		Arma -> escondida na armaria
+		Assassino -> general 
+		Local -> QG
+		Motivo -> Caso entre Wuveborn e a filha do general
+	
+
+	Sala Tesouro? ->
+		O primeiro teme a todos, enquanto o segundo não teme ninguém.
+		O terceiro come o que ele pode, tendo preferência pelo primeiro.
+		O quarto teme o segundo, mas só quando está sozinho.
+		(Resposta: 1°- Cobra | 2°- Urso | 3°- Raposa | 4°- Lobo)

@@ -16,16 +16,16 @@ Onde/como obter cada item
 11: Anel Inicial
 12: Refeitório
 13: Sala Aberta (drop de batalha)
-14: Masmorra
+14: Jardim (drop de batalha)
 15: Armaria
 16: Torre de Vigia
 17: Torre do Mago
 
 21: Arma Inicial
 22: Estábulos
-23: Masmorra
-24: Armaria
-25: Guarita (drop de batalha)
+23: Armaria
+24: Guarita (drop de batalha)
+25: Masmorra
 26: Aposentos (drop de batalha)
 
 27: Catedral

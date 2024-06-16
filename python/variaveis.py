@@ -8,7 +8,7 @@ jogador = {"Localizacao": [0, 0], "Vida": 100, "Mana": 100, "Max Mana": 100}
 # O tipo do item é baseado no seu id: 0~1-> poções | 2~10-> diversos | 11~17-> anéis | 21~29-> armas | 31~37-> armaduras
 itens = {}
 
-with open('arquivos_variaveis/itens.txt', 'r', encoding='utf-8') as arq:
+with open('arquivos_variaveis/Itens', 'r', encoding='utf-8') as arq:
     linhas = arq.readlines()
 
 for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
@@ -17,11 +17,10 @@ for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
         itens[int(id)] = {"Nome": nome, "Descrição": descricao, "Efeito": int(efeito)}
 
 
-magias = {"Flecha de Luz": {"Dano": 25, "Custo": 10, "Desbloqueada": False}, "Bola de Fogo": {"Dano": 50, "Custo": 20, "Desbloqueada": False}, "Tempestade de Raios": {"Dano": 75, "Custo": 30, "Desbloqueada": False}}
+magias = {"Flecha de Luz": {"Dano": 40, "Custo": 50, "Desbloqueada": False}, "Bola de Fogo": {"Dano": 70, "Custo": 75, "Desbloqueada": False}, "Tempestade de Raios": {"Dano": 130, "Custo": 100, "Desbloqueada": False}}
 
 # inventario = {"ID do Item": Quantidade, ...}
 inventario = {0: 3, 1: 3, 11: 1, 21: 1, 31: 1}
-"""inventario = {item: 1 for item in itens.keys()}"""
 
 
 # equipamentos -> ["Arma": id_do_item, ...] (itens equipados pelo jogador)
@@ -38,7 +37,7 @@ salas_descobertas = [[True if ((x,y) == (0,0)) else False for x in range(5)] for
 
 textos_observacao = {}
 
-with open('arquivos_variaveis/Textos_Observacao.txt', 'r', encoding='utf-8') as arq:
+with open('arquivos_variaveis/Textos_Observacao', 'r', encoding='utf-8') as arq:
     linhas = arq.readlines()
 
 for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
@@ -49,10 +48,10 @@ for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
 
 # interacoes_desbloqueadas -> interações que podem ser realizadas | interacoes_indisponiveis -> interações que não podem ser desbloqueadas
 interacoes = {}
-interacoes_desbloqueadas = []
-interacoes_indisponiveis = ["Pegar Pena", "Dar Vara de Pesca pro Pescador", "Atacar Arqueiro", "Pegar Anel Abençoado", "Realizar o julgamento", "Reeabastecer poções nas fontes", "Liberar passagem secreta", "Atacar o Mago", "Furtar os itens do Mago", "Despetrificar estátuas", "Atacar Guardas Reais"]
+interacoes_desbloqueadas = ["Vasculhar"]
+interacoes_indisponiveis = ["Pegar Pena", "Dar Vara de Pesca pro Pescador", "Atacar Arqueiro", "Pegar Anel Abençoado", "Realizar o julgamento", "Reabastecer poções nas fontes", "Ouvir a palavra de Miarli", "Liberar passagem secreta", "Atacar Mago", "Furtar os itens do Mago", "Pegar Anel do Combatente", "Pegar Clava de Bronze Enferrujada", "Analisar claymore", "Pegar Vara de Pesca", "Abrir caixinha", "Despetrificar estátuas", "Atacar Guardas Reais"]
 
-with open('arquivos_variaveis/Interacoes.txt', 'r', encoding='utf-8') as arq:
+with open('arquivos_variaveis/Interacoes', 'r', encoding='utf-8') as arq:
     linhas = arq.readlines()
 
 for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
@@ -62,25 +61,44 @@ for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
         interacoes[sala] = list(acoes)
 
 
-inimigos = {"Esqueleto": {"Vida": 100, "Dano": 1, "Drop": "Armadura de Couro Esfarrapada", "Ação": "Pegar Armadura de Couro do esqueleto"}}
+inimigos = {}
+
+with open('arquivos_variaveis/Inimigos', 'r', encoding='utf-8') as arq:
+    linhas = arq.readlines()
+
+for linha in [linha.strip() for linha in linhas if (linha.strip() != "")]:
+    if (len(linha.split(" - ")) == 5):
+        nome, vida, dano, texto_ataque, drop = linha.split(" - ")
+        inimigos[nome] = {"Vida": int(vida), "Dano": int(dano), "Texto Ataque": texto_ataque, "Drop": drop}
 
 
-with open("arquivos_variaveis/Texto_Inicial.txt", mode="r", encoding="utf-8") as arq:
+with open("arquivos_variaveis/Texto_Inicial", mode="r", encoding="utf-8") as arq:
     texto_de_inicio = arq.read()
 
 
-with open("arquivos_variaveis/Boas_Vindas.txt", mode="r", encoding="utf-8") as arq:
+with open("arquivos_variaveis/Boas_Vindas", mode="r", encoding="utf-8") as arq:
     boas_vindas = arq.read()
 
 
-texto_lento_ativado = True
+texto_lento_velocidade = 0.025
 
 
-# mov_invalidos -> {destino(tupla): [texto_explicativo (string), origem(ns) (tupla(s))], ...}
-mov_invalidos = {(3,0): ["a ponte está quebrada.", (2,0)], (2,0): ["a ponte está quebrada.", (3,0)], (4,0): ["a porta da torre está trancada.", (3,0)], (3,0): ["a porta da torre está trancada.", (4,0)], (4,2): ["uma barreira mágica do próprio castelo te impede de entrar na masmorra. Somente guardas e prisioneiros podem passar por ela.", (4,1), (3,2), (4,3)], (1,3): ["a porta para biblioteca está trancada.", (0,3), (2,3), (1,2), (1,4)], (4,3): ["uma barreira protetora envolve a entrada para a torre do mago. Mas quem está mantendo essa barreira?", (4,2), (3,3)], (3,4): ["a porta para o quarto do rei está trancada.", (2,4)]}
+# mov_invalidos -> {destino: [texto_explicativo, origem(ns)], ...}
+mov_invalidos = {(3,1): ["lá estava infestado de espíritos e você tem muito medo deles.", (3,0), (2,1), (3,2), (4,1)], (4,0): ["a porta da torre está trancada.", (3,0)], (3,0): ["a porta da torre está trancada.", (4,0)], (4,2): ["uma barreira mágica do próprio castelo te impede de entrar na masmorra. Somente guardas e prisioneiros podem passar por ela.", (4,1), (3,2), (4,3)], (1,3): ["a porta para biblioteca está trancada.", (0,3), (2,3), (1,2), (1,4)], (4,3): ["uma barreira protetora envolve a entrada para a torre do mago. Mas quem está mantendo essa barreira?", (4,2), (3,3)], (0,3): ["você não consegue abrir porta, parece que você está preso aqui.", (0,4)], (4,4): ["a porta está trancada, você vai precisar de uma chave para abrí-la.", (3,4)]}
 
 
+# Variáveis do enigma do tribunal
+arma_crime_descoberta = False
+local_crime_descoberto = False
+motivo_crime_descoberto = False
+assassino_descoberto = False
+
+
+guarda_sem_nome_derrotado = False
 arqueiro_nos_estabulos = False
 passagem_secreta_descoberta = False
-cavaleiros_reais_derrotados = False
-enigma_stf_ativo = False
+guardas_reais_derrotados = False
+
+
+fim_de_jogo = False
+vitoria = False
