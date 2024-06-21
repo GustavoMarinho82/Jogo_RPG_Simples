@@ -115,7 +115,8 @@ def atualizar_max_mana():
     if (id_anel == 17):
         var.jogador["Max Mana"] += 30
 
-    var.jogador["Mana"] = var.jogador["Max Mana"]
+    if (var.jogador["Mana"] > var.jogador["Max Mana"]):
+        var.jogador["Mana"] = var.jogador["Max Mana"]
 
 
 def tela_de_inicio():
@@ -178,7 +179,8 @@ def tela_de_inicio():
                             var.texto_lento_velocidade = velocidade_anterior
                             limpar_terminal()
                             continue
-                            
+                        
+                        limpar_terminal()
                         break
                     
                     continue
